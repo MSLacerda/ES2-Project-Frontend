@@ -1,0 +1,40 @@
+{
+  "projects": {
+    "default": "es2-project",
+    "master": "es2-project",
+    "prod": "es2-project"
+  },
+  "ci": {
+    "copyVersion": true,
+    "createConfig": {
+      "master": {
+        "env": "staging",
+        "firebase": {
+          "apiKey": "${STAGE_FIREBASE_API_KEY}",
+          "authDomain": "es2-project.firebaseapp.com",
+          "databaseURL": "https://es2-project.firebaseio.com",
+          "projectId": "es2-project",
+          "storageBucket": "es2-project.appspot.com",
+          "messagingSenderId": "1081361276433"
+        },
+        "sentryDsn": "${SENTRY_DSN}",
+        "analyticsTrackingId": "${GA_TRACKING_ID}",
+        "publicVapidKey": "${STAGE_PUBLIC_VAPID_KEY}"
+      },
+      "prod": {
+        "env": "production",
+        "firebase": {
+          "apiKey": "${PROD_FIREBASE_API_KEY}",
+          "authDomain": "es2-project.firebaseapp.com",
+          "databaseURL": "https://es2-project.firebaseio.com",
+          "projectId": "es2-project",
+          "storageBucket": "es2-project.appspot.com",
+          "messagingSenderId": "1081361276433"
+        },
+        "sentryDsn": "${SENTRY_DSN}",
+        "analyticsTrackingId": "${GA_TRACKING_ID}",
+        "publicVapidKey": "${PROD_PUBLIC_VAPID_KEY}"
+      }
+    }
+  }
+}

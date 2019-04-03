@@ -1,0 +1,24 @@
+{
+  "generator-react-firebase": {
+    "promptValues": {
+      "githubUser": "es2",
+      "firebaseName": "es2-project",
+      "firebaseKey": "AIzaSyCuxi0U0E1ZMzMfuHVOnGK0jEClnrkTdss",
+      "includeRedux": true,
+      "includeFirestore": true,
+      "otherFeatures": [
+        "Continuous Integration config",
+        "Firebase Cloud Messaging",
+        "Firebase Functions (with ESNext support)",
+        "Tests for Firebase Functions (Mocha + Chai)",
+        "Google Analytics (react-ga)",
+        "Error Tracking (Sentry.io)",
+        "Client Side Error Reporting (Stackdriver)"
+      ],
+      "messagingSenderId": "1081361276433",
+      "firebasePublicVapidKey": "BPeJc3XspgsEiv5zw_fV0yyFoJKeQd6d1qaaHdi_jYAoFy2miCvYx2HOVk3P3LaEUdXKDwOcTMvdbN09ohgNrfI content_copy",
+      "ciProvider": "travis",
+      "deployTo": "firebase"
+    }
+  }
+}
