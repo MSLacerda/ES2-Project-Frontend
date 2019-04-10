@@ -5,8 +5,8 @@ import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import { LIST_PATH } from 'constants/paths'
-import AccountMenu from './AccountMenu'
-import LoginMenu from './LoginMenu'
+// import AccountMenu from './AccountMenu'
+// import LoginMenu from './LoginMenu'
 
 function Navbar({
   avatarUrl,
@@ -27,22 +27,10 @@ function Navbar({
           color="inherit"
           className={classes.flex}
           component={Link}
-          to={authExists ? LIST_PATH : '/'}>
-          ES2
+          to={authExists ? LIST_PATH : '/'}
+        >
+          Engenharia de Software 2
         </Typography>
-        {authExists ? (
-          <AccountMenu
-            avatarUrl={avatarUrl}
-            displayName={displayName}
-            onLogoutClick={handleLogout}
-            goToAccount={goToAccount}
-            closeAccountMenu={closeAccountMenu}
-            handleMenu={handleMenu}
-            anchorEl={anchorEl}
-          />
-        ) : (
-          <LoginMenu />
-        )}
       </Toolbar>
     </AppBar>
   )

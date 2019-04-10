@@ -34,7 +34,8 @@ function LoginForm({ pristine, submitting, handleSubmit, classes }) {
           color="primary"
           type="submit"
           variant="contained"
-          disabled={pristine || submitting}>
+          disabled={pristine || submitting}
+        >
           {submitting ? 'Loading' : 'Login'}
         </Button>
       </div>

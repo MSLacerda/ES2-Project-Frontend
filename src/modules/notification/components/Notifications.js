@@ -25,7 +25,8 @@ function Notifications({ allIds, byId, dismissNotification, classes }) {
           action={
             <IconButton
               onClick={() => dismissNotification(id)}
-              classes={{ root: classes.buttonRoot }}>
+              classes={{ root: classes.buttonRoot }}
+            >
               <CloseIcon />
             </IconButton>
           }
