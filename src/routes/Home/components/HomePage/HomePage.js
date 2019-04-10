@@ -15,13 +15,13 @@ function Home({ classes }) {
   return (
     <div className={classes.root}>
       <div className="flex-row-center">
-        <h2>Home Route</h2>
+        <h2>Home (Em Desenvolvimento)</h2>
       </div>
       <div className="flex-row-center">
         <div className={classes.section}>
-          <h3>Routing</h3>
+          <h3>Rotas</h3>
           <span>
-            Redirecting and route protection done using:
+            Redirecionamento e proteção de rotas:
             <div>
               <span>
                 <a
@@ -42,10 +42,9 @@ function Home({ classes }) {
           </span>
         </div>
         <div className={classes.section}>
-          <h4>Logged Out</h4>
+          <h4>Desconectado</h4>
           <span>
-            User is redirected to <pre>/login</pre> if not authenticated and
-            trying to vist:
+            O usuário é redirecionado <pre>/login</pre> se não estiver autenticado e tentar acessar:
           </span>
           <ul>
             <li>
@@ -59,8 +58,7 @@ function Home({ classes }) {
         <div className={classes.section}>
           <h4>Logged In</h4>
           <span>
-            User is redirected to <pre>/projects</pre> if authenticated and
-            trying to vist:
+            O usuário é redirecionado para <pre>/projects</pre> se estiver autenticado e tentar visitar
           </span>
           <ul>
             <li>
@@ -73,8 +71,8 @@ function Home({ classes }) {
         </div>
         <div className={classes.section}>
           <div>
-            <h4>Forms</h4>
-            <span>Redirecting and route protection done using:</span>
+            <h4>Formulários</h4>
+            <span>Redirecionamento e proteção de rotas usando:</span>
             <div>
               <span>
                 <a
@@ -86,7 +84,7 @@ function Home({ classes }) {
               </span>
             </div>
           </div>
-          <span>The following routes use redux-form:</span>
+          <span>Utilizando redux-forms:</span>
           <Link to={ACCOUNT_PATH}>
             <p>Account Page</p>
           </Link>

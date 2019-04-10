@@ -8,6 +8,11 @@ export default {
   typography: {
     useNextVariants: true
   },
+  flexColumnStart: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'start'
+  },
   flexColumnCenter: {
     display: 'flex',
     flexDirection: 'column',

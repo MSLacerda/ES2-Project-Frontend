@@ -9,21 +9,31 @@ import LoginForm from '../LoginForm'
 function LoginPage({ emailLogin, googleLogin, onSubmitFail, classes }) {
   return (
     <div className={classes.root}>
-      <Paper className={classes.panel}>
-        <LoginForm onSubmit={emailLogin} onSubmitFail={onSubmitFail} />
-      </Paper>
-      <div className={classes.orLabel}>or</div>
-      <div className={classes.providers}>
-        <GoogleButton onClick={googleLogin} />
+      <div className={classes.leftPanel}>
+        <LoginForm />
       </div>
-      <div className={classes.signup}>
-        <span className={classes.signupLabel}>Need an account?</span>
-        <Link className={classes.signupLink} to={SIGNUP_PATH}>
-          Sign Up
-        </Link>
+      <div className={classes.rightPanel}>
+        test
       </div>
     </div>
-  )
+  );
+  // return (
+  //   <div className={classes.root}>
+  //     <Paper className={classes.panel}>
+  //       <LoginForm onSubmit={emailLogin} onSubmitFail={onSubmitFail} />
+  //     </Paper>
+  //     <div className={classes.orLabel}>or</div>
+  //     <div className={classes.providers}>
+  //       <GoogleButton onClick={googleLogin} />
+  //     </div>
+  //     <div className={classes.signup}>
+  //       <span className={classes.signupLabel}>Need an account?</span>
+  //       <Link className={classes.signupLink} to={SIGNUP_PATH}>
+  //         Sign Up
+  //       </Link>
+  //     </div>
+  //   </div>
+  // )
 }
 
 LoginPage.propTypes = {
