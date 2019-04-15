@@ -8,14 +8,18 @@ import { required, validateEmail } from 'utils/form'
 function LoginForm({ pristine, submitting, handleSubmit, classes }) {
   return (
     <form className={classes.root} onSubmit={handleSubmit}>
-      <div className={classes.input}> 
+      <div className={classes.header}>
+        <h1> Bem-vindo </h1>
+        <h3> Login </h3>
+      </div>
+      <div className={classes.input}>
         <Field
           name="email"
           component={TextField}
           autoComplete="email"
           label="Email"
           validate={[required, validateEmail]}
-          variant="filled"
+          variant="outlined"
         />
       </div>
       <div className={classes.input}>
@@ -26,7 +30,7 @@ function LoginForm({ pristine, submitting, handleSubmit, classes }) {
           label="Password"
           type="password"
           validate={required}
-          variant="filled"
+          variant="outlined"
         />
       </div>
       <div className={classes.submit}>
