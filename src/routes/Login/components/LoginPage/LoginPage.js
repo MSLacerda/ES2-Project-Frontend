@@ -10,7 +10,7 @@ function LoginPage({ emailLogin, googleLogin, onSubmitFail, classes }) {
   return (
     <div className={classes.root}>
       <div className={classes.leftPanel}>
-        <LoginForm />
+        <LoginForm onSubmit={emailLogin} onSubmitFail={onSubmitFail} />
       </div>
       <div className={classes.rightPanel}>
         test

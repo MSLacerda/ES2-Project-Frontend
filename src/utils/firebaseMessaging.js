@@ -34,7 +34,7 @@ function getMessagingToken() {
     .messaging()
     .getToken()
     .catch(err => {
-      console.error('Unable to retrieve refreshed token ', err) // eslint-disable-line no-console
+      console.error('Impossibilitade de recuperar o token atualizado', err) // eslint-disable-line no-console
       return Promise.reject(err)
     })
 }
@@ -57,7 +57,7 @@ export function requestPermission() {
     .requestPermission()
     .then(getTokenAndWriteToProfile)
     .catch(err => {
-      console.error('Unable to get permission to notify: ', err) // eslint-disable-line no-console
+      console.error('Impossibilitado d obter as permissões de notificação: ', err) // eslint-disable-line no-console
       return Promise.reject(err)
     })
 }

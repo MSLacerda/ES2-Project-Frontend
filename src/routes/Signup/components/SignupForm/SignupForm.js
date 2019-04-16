@@ -9,24 +9,30 @@ function SignupForm({ pristine, submitting, handleSubmit, classes }) {
   return (
     <form className={classes.root} onSubmit={handleSubmit}>
       <Field
+        className={classes.input}
         name="username"
         component={TextField}
         autoComplete="username"
         label="Username"
+        variant="outlined"
         validate={required}
       />
       <Field
+        className={classes.input}
         name="email"
         component={TextField}
         autoComplete="email"
         label="Email"
+        variant="outlined"        
         validate={[required, validateEmail]}
       />
       <Field
+        className={classes.input}
         name="password"
         component={TextField}
         autoComplete="current-password"
         label="Password"
+        variant="outlined"        
         type="password"
         validate={required}
       />
@@ -35,9 +41,14 @@ function SignupForm({ pristine, submitting, handleSubmit, classes }) {
           color="primary"
           type="submit"
           variant="contained"
+<<<<<<< HEAD
           disabled={pristine || submitting}
         >
           {submitting ? 'Loading' : 'Sign Up'}
+=======
+          disabled={pristine || submitting}>
+          {submitting ? 'Carregando' : 'Cadastrar'}
+>>>>>>> fb6300ad9f597035031daebfc96e92426b6e4a05
         </Button>
       </div>
     </form>

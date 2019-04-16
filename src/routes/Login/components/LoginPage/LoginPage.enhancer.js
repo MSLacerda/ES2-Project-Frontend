@@ -5,6 +5,7 @@ import { withStyles } from '@material-ui/core/styles'
 import { UserIsNotAuthenticated } from 'utils/router'
 import { withNotifications } from 'modules/notification'
 import styles from './LoginPage.styles'
+import translate from 'utils/translateErrorCodes'
 
 export default compose(
   // Set component display name (more clear in dev/error tools)
@@ -29,9 +30,16 @@ export default compose(
     googleLogin: ({ firebase, showError }) => () =>
       firebase
         .login({ provider: 'google', type: 'popup' })
-        .catch(err => showError(err.message)),
+        .catch(err => {
+          showError(err.message)
+        }),
     emailLogin: ({ firebase, showError }) => creds =>
-      firebase.login(creds).catch(err => showError(err.message))
+      firebase.login(creds).catch(err => {
+        console.log(err);
+        const translatedMessage = translate[err.code]
+
+        showError(translatedMessage)
+      })
   }),
   // Add styles as props.classes
   withStyles(styles, { withTheme: true })

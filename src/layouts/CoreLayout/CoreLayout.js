@@ -6,7 +6,7 @@ import { Notifications } from 'modules/notification'
 function CoreLayout({ children, classes }) {
   return (
     <div className={classes.container}>
-      {/* <Navbar /> */}
+      <Navbar />
       <div className={classes.children}>{children}</div>
       <Notifications />
     </div>

@@ -15,6 +15,10 @@ export default theme => ({
     minWidth: '192px',
     marginTop: '1.5rem'
   },
+  header: {
+    textAlign: 'center',
+    color: theme.palette.primary.main
+  },
   input: {
     marginTop: '1rem'
   }

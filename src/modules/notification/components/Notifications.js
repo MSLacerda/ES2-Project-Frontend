@@ -22,6 +22,7 @@ function Notifications({ allIds, byId, dismissNotification, classes }) {
         <Snackbar
           key={id}
           open
+          autoHideDuration={6000}
           action={
             <IconButton
               onClick={() => dismissNotification(id)}

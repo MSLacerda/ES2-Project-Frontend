@@ -9,18 +9,21 @@ import SignupForm from '../SignupForm'
 function SignupPage({ emailSignup, googleLogin, onSubmitFail, classes }) {
   return (
     <div className={classes.root}>
-      <Paper className={classes.panel}>
+      <div className={classes.leftPanel}>
         <SignupForm onSubmit={emailSignup} onSubmitFail={onSubmitFail} />
-      </Paper>
-      <div className={classes.orLabel}>or</div>
-      <div className={classes.providers}>
-        <GoogleButton onClick={googleLogin} />
-      </div>
-      <div className={classes.login}>
-        <span className={classes.loginLabel}>Already have an account?</span>
-        <Link className={classes.loginLink} to={LOGIN_PATH}>
-          Login
+        <div className={classes.orLabel}>ou</div>
+        <div className={classes.providers}>
+          <GoogleButton onClick={googleLogin} />
+        </div>
+        <div className={classes.login}>
+          <span className={classes.loginLabel}> Já tem uma conta?</span>
+          <Link className={classes.loginLink} to={LOGIN_PATH}>
+            Login
         </Link>
+        </div>
+      </div>
+      <div className={classes.rightPanel}>
+        test
       </div>
     </div>
   )
