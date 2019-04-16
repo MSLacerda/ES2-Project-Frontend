@@ -8,7 +8,7 @@ import { required, validateEmail } from 'utils/form'
 function LoginForm({ pristine, submitting, handleSubmit, classes }) {
   return (
     <form className={classes.root} onSubmit={handleSubmit}>
-      <div className={classes.input}> 
+      <div className={classes.input}>
         <Field
           name="email"
           component={TextField}
@@ -34,8 +34,7 @@ function LoginForm({ pristine, submitting, handleSubmit, classes }) {
           color="primary"
           type="submit"
           variant="contained"
-          disabled={pristine || submitting}
-        >
+          disabled={pristine || submitting}>
           {submitting ? 'Loading' : 'Login'}
         </Button>
       </div>
