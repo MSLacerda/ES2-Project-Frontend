@@ -1,19 +1,23 @@
 export default theme => ({
   root: {
-    ...theme.flexColumnCenter,
-    justifyContent: 'flex-start',
-    height: '100%',
+    ...theme.flexRowCenter,
+    justifyContent: 'center',
+    height: '100vh',
     width: '100%',
     fontWeight: 400,
-    paddingTop: '1.5rem'
+    padding: '0.5rem'
   },
-  panel: {
+  rightPanel: {
     ...theme.flexColumnCenter,
-    justifyContent: 'center',
-    flexGrow: 1,
-    padding: '1.25rem',
-    minWidth: '250px',
-    minHeight: '270px'
+    width: '100%',
+    margin: '.3rem',
+    alignItems: 'center',
+    
+  },
+  leftPanel: {
+    ...theme.flexColumnCenter,
+    width: '100%',
+    margin: '.3rem',
   },
   orLabel: {
     marginTop: '1rem',

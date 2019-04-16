@@ -20,31 +20,37 @@ function Navbar({
   classes
 }) {
   return (
-    <AppBar position="static">
-      <Toolbar>
-        <Typography
-          variant="h6"
-          color="inherit"
-          className={classes.flex}
-          component={Link}
-          to={authExists ? LIST_PATH : '/'}>
-          ES2
-        </Typography>
-        {authExists ? (
-          <AccountMenu
-            avatarUrl={avatarUrl}
-            displayName={displayName}
-            onLogoutClick={handleLogout}
-            goToAccount={goToAccount}
-            closeAccountMenu={closeAccountMenu}
-            handleMenu={handleMenu}
-            anchorEl={anchorEl}
-          />
-        ) : (
-          <LoginMenu />
-        )}
-      </Toolbar>
-    </AppBar>
+    <div>
+      {authExists ? (
+        <AppBar position="static">
+          <Toolbar>
+            <Typography
+              variant="h6"
+              color="inherit"
+              className={classes.flex}
+              component={Link}
+              to={authExists ? LIST_PATH : '/'}>
+              ES2
+            </Typography>
+            {authExists ? (
+              <AccountMenu
+                avatarUrl={avatarUrl}
+                displayName={displayName}
+                onLogoutClick={handleLogout}
+                goToAccount={goToAccount}
+                closeAccountMenu={closeAccountMenu}
+                handleMenu={handleMenu}
+                anchorEl={anchorEl}
+              />
+            ) : (
+              <LoginMenu />
+            )}
+          </Toolbar>
+        </AppBar>
+      ) : (
+        <span></span>
+      )}
+    </div>
   )
 }
 

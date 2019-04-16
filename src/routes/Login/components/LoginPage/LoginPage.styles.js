@@ -18,6 +18,5 @@ export default theme => ({
     ...theme.flexColumnCenter,
     width: '100%',
     margin: '.3rem',
-    
   }
 })

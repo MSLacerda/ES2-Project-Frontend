@@ -31,11 +31,11 @@ export default compose(
       firebase
         .login({ provider: 'google', type: 'popup' })
         .catch(err => {
-          console.log(err);
           showError(err.message)
         }),
     emailLogin: ({ firebase, showError }) => creds =>
       firebase.login(creds).catch(err => {
+        console.log(err);
         const translatedMessage = translate[err.code]
 
         showError(translatedMessage)
