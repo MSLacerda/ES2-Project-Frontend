@@ -8,6 +8,10 @@ import { required, validateEmail } from 'utils/form'
 function SignupForm({ pristine, submitting, handleSubmit, classes }) {
   return (
     <form className={classes.root} onSubmit={handleSubmit}>
+      <div className={classes.header}>
+        <h1> Bem-vindo </h1>
+        <h3> Cadastro </h3>
+      </div>
       <Field
         className={classes.input}
         name="username"
@@ -23,7 +27,7 @@ function SignupForm({ pristine, submitting, handleSubmit, classes }) {
         component={TextField}
         autoComplete="email"
         label="Email"
-        variant="outlined"        
+        variant="outlined"
         validate={[required, validateEmail]}
       />
       <Field
@@ -32,23 +36,18 @@ function SignupForm({ pristine, submitting, handleSubmit, classes }) {
         component={TextField}
         autoComplete="current-password"
         label="Password"
-        variant="outlined"        
+        variant="outlined"
         type="password"
         validate={required}
       />
       <div className={classes.submit}>
         <Button
+          fullWidth
           color="primary"
           type="submit"
           variant="contained"
-<<<<<<< HEAD
-          disabled={pristine || submitting}
-        >
-          {submitting ? 'Loading' : 'Sign Up'}
-=======
           disabled={pristine || submitting}>
           {submitting ? 'Carregando' : 'Cadastrar'}
->>>>>>> fb6300ad9f597035031daebfc96e92426b6e4a05
         </Button>
       </div>
     </form>

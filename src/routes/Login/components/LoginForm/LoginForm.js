@@ -4,17 +4,16 @@ import { Field } from 'redux-form'
 import { TextField } from 'redux-form-material-ui'
 import Button from '@material-ui/core/Button'
 import { required, validateEmail } from 'utils/form'
+import { Link } from 'react-router-dom';
+import { LOGIN_PATH, SIGNUP_PATH } from 'constants/paths';
 
 function LoginForm({ pristine, submitting, handleSubmit, classes }) {
   return (
     <form className={classes.root} onSubmit={handleSubmit}>
-<<<<<<< HEAD
-=======
       <div className={classes.header}>
         <h1> Bem-vindo </h1>
         <h3> Login </h3>
       </div>
->>>>>>> fb6300ad9f597035031daebfc96e92426b6e4a05
       <div className={classes.input}>
         <Field
           name="email"
@@ -38,11 +37,12 @@ function LoginForm({ pristine, submitting, handleSubmit, classes }) {
       </div>
       <div className={classes.submit}>
         <Button
+          fullWidth
           color="primary"
           type="submit"
           variant="contained"
           disabled={pristine || submitting}>
-          {submitting ? 'Loading' : 'Login'}
+          {submitting ? 'Carregando' : 'Login'}
         </Button>
       </div>
     </form>

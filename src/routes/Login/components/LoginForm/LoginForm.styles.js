@@ -2,8 +2,7 @@ export default theme => ({
   root: {
     ...theme.flexColumnCenter,
     justifyContent: 'center',
-    flexGrow: 1,
-    height: '100%',
+    flexGrow: 0,
     width: '100%',
     margin: '.2rem'
   },
@@ -11,8 +10,16 @@ export default theme => ({
     ...theme.flexColumnCenter,
     justifyContent: 'center',
     textAlign: 'center',
-    padding: '1.25rem',
-    minWidth: '192px',
+    padding: '0.25rem',
+    minWidth: '100%',
+    marginTop: '1.5rem'
+  },
+  signup: {
+    ...theme.flexColumnCenter,
+    justifyContent: 'center',
+    textAlign: 'center',
+    padding: '0.25rem',
+    minWidth: '220px',
     marginTop: '1.5rem'
   },
   header: {

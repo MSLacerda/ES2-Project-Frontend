@@ -2,8 +2,8 @@ export default theme => ({
   root: {
     ...theme.flexRowCenter,
     justifyContent: 'center',
-    height: '100vh',
     width: '100%',
+    height: '100vh',
     fontWeight: 400,
     padding: '0.5rem'
   },
@@ -12,12 +12,12 @@ export default theme => ({
     width: '100%',
     margin: '.3rem',
     alignItems: 'center',
-    
   },
   leftPanel: {
     ...theme.flexColumnCenter,
+    justifyContent: 'center',
     width: '100%',
-    margin: '.3rem',
+    margin: '.3rem'
   },
   orLabel: {
     marginTop: '1rem',
@@ -26,9 +26,10 @@ export default theme => ({
   login: {
     ...theme.flexColumnCenter,
     justifyContent: 'center',
-    marginTop: '1.5rem'
+    marginTop: '0.5rem'
   },
   loginLabel: {
+    margin: '0.9rem',
     fontSize: '1rem',
     fontWeight: 'bold'
   },

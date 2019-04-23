@@ -1,12 +1,9 @@
 export default theme => ({
   root: {
     display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'flex-start',
-    height: '200px',
-    width: '300px',
-    margin: theme.spacing.unit * 0.5,
-    padding: theme.spacing.unit * 1.3
+  },
+  details: {
+    ...theme.flexColumnCenter,
   },
   top: {
     display: 'flex',

@@ -4,23 +4,22 @@ import Paper from '@material-ui/core/Paper'
 import IconButton from '@material-ui/core/IconButton'
 import Tooltip from '@material-ui/core/Tooltip'
 import DeleteIcon from '@material-ui/icons/Delete'
+import { Card, CardMedia, CardContent } from '@material-ui/core';
 
 function ProjectTile({ name, onSelect, onDelete, showDelete, classes }) {
   return (
-    <Paper className={classes.root}>
-      <div className={classes.top}>
-        <span className={classes.name} onClick={onSelect}>
-          {name || 'No Name'}
-        </span>
-        {showDelete && onDelete ? (
-          <Tooltip title="delete">
-            <IconButton onClick={onDelete}>
-              <DeleteIcon />
-            </IconButton>
-          </Tooltip>
-        ) : null}
+    <Card className={classes.root}>
+      <CardMedia
+        className={classes.cover}
+        image="/static/images/cards/project-planning.jpg"
+        title="Imagem Projeto"
+      />
+      <div className={classes.details}>
+        <CardContent className={classes.content}>
+
+        </CardContent>
       </div>
-    </Paper>
+    </Card>
   )
 }
 

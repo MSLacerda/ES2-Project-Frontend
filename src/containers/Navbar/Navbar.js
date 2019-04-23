@@ -5,8 +5,9 @@ import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import { LIST_PATH } from 'constants/paths'
-// import AccountMenu from './AccountMenu'
-// import LoginMenu from './LoginMenu'
+import AccountMenu from './AccountMenu'
+import LoginMenu from './LoginMenu'
+import { Tabs, Tab } from '@material-ui/core'
 
 function Navbar({
   avatarUrl,
@@ -20,21 +21,6 @@ function Navbar({
   classes
 }) {
   return (
-<<<<<<< HEAD
-    <AppBar position="static">
-      <Toolbar>
-        <Typography
-          variant="h6"
-          color="inherit"
-          className={classes.flex}
-          component={Link}
-          to={authExists ? LIST_PATH : '/'}
-        >
-          Engenharia de Software 2
-        </Typography>
-      </Toolbar>
-    </AppBar>
-=======
     <div>
       {authExists ? (
         <AppBar position="static">
@@ -45,7 +31,7 @@ function Navbar({
               className={classes.flex}
               component={Link}
               to={authExists ? LIST_PATH : '/'}>
-              ES2
+              Brand
             </Typography>
             {authExists ? (
               <AccountMenu
@@ -61,12 +47,15 @@ function Navbar({
               <LoginMenu />
             )}
           </Toolbar>
+          <Tabs onChange={(e) => { console.log(e)}}>
+            <Tab label={'Exercicios'} />
+            <Tab label={'Resultados'} />
+          </Tabs>
         </AppBar>
       ) : (
         <span></span>
       )}
     </div>
->>>>>>> fb6300ad9f597035031daebfc96e92426b6e4a05
   )
 }
 

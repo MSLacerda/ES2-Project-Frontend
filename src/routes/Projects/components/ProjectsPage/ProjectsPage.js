@@ -36,7 +36,12 @@ function ProjectsPage({
               onRequestClose={toggleDialog}
             />
             <div className={classes.tiles}>
-              <NewProjectTile onClick={toggleDialog} />
+              <ProjectTile
+                onSelect={() => console.log('select')}
+                onDelete={() => console.log('delete')}
+                name={'test'}
+              />
+              {/* <NewProjectTile onClick={toggleDialog} />
               {!isEmpty(projects) &&
                 projects.map((project, ind) => (
                   <ProjectTile
@@ -45,7 +50,7 @@ function ProjectsPage({
                     onSelect={() => goToProject(project.id)}
                     onDelete={() => deleteProject(project.id)}
                   />
-                ))}
+                ))} */}
             </div>
           </div>
         )}

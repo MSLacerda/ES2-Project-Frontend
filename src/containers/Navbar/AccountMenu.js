@@ -38,8 +38,8 @@ function AccountMenu({
         open={Boolean(anchorEl)}
         onClose={closeAccountMenu}
       >
-        <MenuItem onClick={goToAccount}>Account</MenuItem>
-        <MenuItem onClick={onLogoutClick}>Sign Out</MenuItem>
+        <MenuItem onClick={goToAccount}>Conta</MenuItem>
+        <MenuItem onClick={onLogoutClick}>Sair</MenuItem>
       </Menu>
     </div>
   )

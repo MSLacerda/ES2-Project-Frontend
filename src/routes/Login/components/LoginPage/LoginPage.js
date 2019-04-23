@@ -11,6 +11,16 @@ function LoginPage({ emailLogin, googleLogin, onSubmitFail, classes }) {
     <div className={classes.root}>
       <div className={classes.leftPanel}>
         <LoginForm onSubmit={emailLogin} onSubmitFail={onSubmitFail} />
+        <div className={classes.orLabel}>ou</div>
+        <div className={classes.providers}>
+          <GoogleButton type="light" label="Login com o Google" onClick={googleLogin} />
+        </div>
+        <div className={classes.signup}>
+          <span className={classes.loginLabel}> precisa de uma conta?</span>
+          <Link className={classes.signupLink} to={SIGNUP_PATH}>
+            Cadastre-se
+          </Link>
+        </div>
       </div>
       <div className={classes.rightPanel}>
         test
