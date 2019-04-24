@@ -1,9 +1,9 @@
 import { Loadable } from 'utils/components'
 
 export default {
-  path: ':type',
+  path: ':taskId',
   component: Loadable({
     loader: () =>
-      import(/* webpackChunkName: 'Project' */ './components/ProjectPage')
+      import(/* webpackChunkName: 'Project' */ './components/TaskPage')
   })
 }

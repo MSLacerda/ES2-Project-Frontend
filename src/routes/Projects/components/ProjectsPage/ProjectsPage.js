@@ -7,6 +7,8 @@ import ProjectTile from '../ProjectTile'
 import NewProjectTile from '../NewProjectTile'
 import NewProjectDialog from '../NewProjectDialog'
 import { renderChildren } from 'utils/router'
+import projectImage from 'static/images/cards/project-planning.jpg'
+import devImage from 'static/images/cards/source-code.jpg'
 
 function ProjectsPage({
   projects,
@@ -18,7 +20,7 @@ function ProjectsPage({
   addProject,
   classes,
   match,
-  goToProject
+  goToTasks
 }) {
   return (
     <Switch>
@@ -37,9 +39,19 @@ function ProjectsPage({
             />
             <div className={classes.tiles}>
               <ProjectTile
-                onSelect={() => console.log('select')}
+                onSelect={() => goToTasks('management')}
                 onDelete={() => console.log('delete')}
-                name={'test'}
+                image={projectImage}
+                keywords={['Diagramas', 'Casos de Uso']}
+                name={'Gerenciamento de Projeto'}
+              />
+
+              <ProjectTile
+                onSelect={() => goToTasks('development')}
+                onDelete={() => console.log('delete')}
+                image={devImage}
+                keywords={['Programação']}
+                name={'Desenvolvimento'}
               />
               {/* <NewProjectTile onClick={toggleDialog} />
               {!isEmpty(projects) &&
@@ -69,7 +81,7 @@ ProjectsPage.propTypes = {
   deleteProject: PropTypes.func.isRequired, // from enhancer (withHandlers - firebase)
   collabProjects: PropTypes.object, // from enhancer (withHandlers - firebase)
   addProject: PropTypes.func.isRequired, // from enhancer (withHandlers - firebase)
-  goToProject: PropTypes.func.isRequired // from enhancer (withHandlers - router)
+  goToTasks: PropTypes.func.isRequired // from enhancer (withHandlers - router)
 }
 
 export default ProjectsPage

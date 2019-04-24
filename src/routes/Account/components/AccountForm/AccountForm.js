@@ -8,18 +8,18 @@ import ProviderDataForm from '../ProviderDataForm'
 function AccountForm({ account, handleSubmit, submitting, pristine, classes }) {
   return (
     <form className={classes.root} onSubmit={handleSubmit}>
-      <h4>Account</h4>
+      <h4>Conta</h4>
       <div className={classes.fields}>
         <Field
           fullWidth
           name="displayName"
           component={TextField}
-          label="Display Name"
+          label="Nome"
         />
         <Field name="email" label="Email" component={TextField} fullWidth />
         <Field
           name="avatarUrl"
-          label="Avatar Url"
+          label="URL do Avatar"
           component={TextField}
           fullWidth
         />

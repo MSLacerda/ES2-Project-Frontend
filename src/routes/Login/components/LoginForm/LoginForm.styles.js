@@ -11,7 +11,7 @@ export default theme => ({
     justifyContent: 'center',
     textAlign: 'center',
     padding: '0.25rem',
-    minWidth: '100%',
+    minWidth: '15rem',
     marginTop: '1.5rem'
   },
   signup: {

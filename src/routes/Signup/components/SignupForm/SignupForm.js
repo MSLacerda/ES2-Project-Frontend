@@ -12,34 +12,37 @@ function SignupForm({ pristine, submitting, handleSubmit, classes }) {
         <h1> Bem-vindo </h1>
         <h3> Cadastro </h3>
       </div>
-      <Field
-        className={classes.input}
-        name="username"
-        component={TextField}
-        autoComplete="username"
-        label="Username"
-        variant="outlined"
-        validate={required}
-      />
-      <Field
-        className={classes.input}
-        name="email"
-        component={TextField}
-        autoComplete="email"
-        label="Email"
-        variant="outlined"
-        validate={[required, validateEmail]}
-      />
-      <Field
-        className={classes.input}
-        name="password"
-        component={TextField}
-        autoComplete="current-password"
-        label="Password"
-        variant="outlined"
-        type="password"
-        validate={required}
-      />
+      <div className={classes.input}>
+        <Field
+          name="username"
+          component={TextField}
+          autoComplete="username"
+          label="Username"
+          variant="outlined"
+          validate={required}
+        />
+      </div>
+      <div className={classes.input}>
+        <Field
+          name="email"
+          component={TextField}
+          autoComplete="email"
+          label="Email"
+          variant="outlined"
+          validate={[required, validateEmail]}
+        />
+      </div>
+      <div className={classes.input}>
+        <Field
+          name="password"
+          component={TextField}
+          autoComplete="current-password"
+          label="Password"
+          variant="outlined"
+          type="password"
+          validate={required}
+        />
+      </div>
       <div className={classes.submit}>
         <Button
           fullWidth

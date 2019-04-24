@@ -1,14 +1,36 @@
 export default theme => ({
   root: {
     display: 'flex',
+    width: '100%',
+    marginBottom: theme.spacing.unit * 4
   },
   details: {
-    ...theme.flexColumnCenter,
+    ...theme.flexColumnCenter
+  },
+  chip: {
+    margin: theme.spacing.unit
   },
   top: {
     display: 'flex',
     justifyContent: 'space-between',
     width: '100%'
+  },
+  cover: {
+    width: 300
+  },
+  content: {
+    flex: '1 0 auto'
+  },
+  cardTitle: {
+    fontWeight: 'bold'
+  },
+  projectDescription: {
+    // fontSize: '1rem',
+    fontWeight: 'lighter'
+  },
+  openWrapper: {
+    ...theme.flexRowEnd,
+    paddingTop: theme.spacing.unit * 1
   },
   name: {
     fontSize: '1.5rem',

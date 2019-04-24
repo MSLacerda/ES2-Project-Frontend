@@ -6,7 +6,7 @@ export default {
   },
   // Enable typography v2: https://material-ui.com/style/typography/#migration-to-typography-v2
   typography: {
-    useNextVariants: true
+    useNextVariants: true,
   },
   flexColumnStart: {
     display: 'flex',
@@ -22,5 +22,10 @@ export default {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center'
+  },
+  flexRowEnd: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'flex-end'
   }
 }

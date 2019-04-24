@@ -1,3 +1,5 @@
+import bgImg from 'static/images/bg/left-signup.jpg'
+
 export default theme => ({
   root: {
     ...theme.flexRowCenter,
@@ -10,8 +12,14 @@ export default theme => ({
   rightPanel: {
     ...theme.flexColumnCenter,
     width: '100%',
+    justifyContent: 'center',
     margin: '.3rem',
     alignItems: 'center',
+    background: `url(${bgImg}) no-repeat`,
+    backgroundSize: 'cover',
+    [theme.breakpoints.down('sm')]: {
+      display: 'none'
+    }
   },
   leftPanel: {
     ...theme.flexColumnCenter,

@@ -47,10 +47,17 @@ function Navbar({
               <LoginMenu />
             )}
           </Toolbar>
-          <Tabs onChange={(e) => { console.log(e)}}>
-            <Tab label={'Exercicios'} />
-            <Tab label={'Resultados'} />
-          </Tabs>
+          {window.location.pathname.indexOf('tasks') != -1 ? (
+            <Tabs
+              onChange={e => {
+                console.log(e)
+              }}>
+              <Tab label={'Exercicios'} />
+              <Tab label={'Resultados'} />
+            </Tabs>
+          ) : (
+            ''
+          )}
         </AppBar>
       ) : (
         <span></span>

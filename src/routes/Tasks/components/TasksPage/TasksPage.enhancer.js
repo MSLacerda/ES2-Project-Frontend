@@ -7,12 +7,12 @@ import { withStyles } from '@material-ui/core/styles'
 import { withNotifications } from 'modules/notification'
 import { spinnerWhileLoading } from 'utils/components'
 import { UserIsAuthenticated } from 'utils/router'
-import { LIST_PATH, TASKS_PATH } from 'constants/paths'
-import styles from './ProjectsPage.styles'
+import { LIST_PATH } from 'constants/paths'
+import styles from './TasksPage.style'
 
 export default compose(
   // Set component display name (more clear in dev/error tools)
-  setDisplayName('EnhancedProjectsPage'),
+  setDisplayName('EnhancedTasksPage'),
   // redirect to /login if user is not logged in
   UserIsAuthenticated,
   // Map auth uid from state to props
@@ -50,47 +50,6 @@ export default compose(
       })
     }
   ),
-  // Add handlers as props
-  withHandlers({
-    addProject: props => newInstance => {
-      const { firestore, uid, showError, showSuccess, toggleDialog } = props
-      if (!uid) {
-        return showError('You must be logged in to create a project')
-      }
-      return firestore
-        .add(
-          { collection: 'projects' },
-          {
-            ...newInstance,
-            createdBy: uid,
-            createdAt: firestore.FieldValue.serverTimestamp()
-          }
-        )
-        .then(() => {
-          toggleDialog()
-          showSuccess('Project added successfully')
-        })
-        .catch(err => {
-          console.error('Error:', err) // eslint-disable-line no-console
-          showError(err.message || 'Could not add project')
-          return Promise.reject(err)
-        })
-    },
-    deleteProject: props => projectId => {
-      const { firestore, showError, showSuccess } = props
-      return firestore
-        .delete({ collection: 'projects', doc: projectId })
-        .then(() => showSuccess('Project deleted successfully'))
-        .catch(err => {
-          console.error('Error:', err) // eslint-disable-line no-console
-          showError(err.message || 'Could not delete project')
-          return Promise.reject(err)
-        })
-    },
-    goToTasks: ({ history }) => projectType => {
-      history.push(`${TASKS_PATH}/${projectType}`)
-    }
-  }),
   // Add styles as props.classes
   withStyles(styles)
 )
