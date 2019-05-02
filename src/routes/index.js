@@ -7,7 +7,8 @@ import SignupRoute from './Signup'
 import ProjectsRoute from './Projects'
 import AccountRoute from './Account'
 import NotFoundRoute from './NotFound'
-import TasksRoute from './Tasks'
+import ManagementTasks from './ManagementTasks'
+import DevTasks from './DevTasks'
 
 export default function createRoutes(store) {
   return (
@@ -20,7 +21,9 @@ export default function createRoutes(store) {
           ProjectsRoute,
           SignupRoute,
           LoginRoute,
-          TasksRoute
+          ManagementTasks,
+          DevTasks
+
           /* Add More Routes Here */
         ].map((settings, index) => (
           <Route key={`Route-${index}`} {...settings} />

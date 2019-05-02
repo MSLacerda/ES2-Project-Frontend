@@ -7,8 +7,7 @@ import { withStyles } from '@material-ui/core/styles'
 import { withNotifications } from 'modules/notification'
 import { spinnerWhileLoading } from 'utils/components'
 import { UserIsAuthenticated } from 'utils/router'
-import { LIST_PATH } from 'constants/paths'
-import styles from './TasksPage.style'
+import styles from './ManagementTasksPage.styles'
 
 export default compose(
   // Set component display name (more clear in dev/error tools)
@@ -33,8 +32,6 @@ export default compose(
   })),
   // Show loading spinner while projects and collabProjects are loading
   spinnerWhileLoading(['projects']),
-  // Add props.router
-  withRouter,
   // Add props.showError and props.showSuccess
   withNotifications,
   // Add state and state handlers as props

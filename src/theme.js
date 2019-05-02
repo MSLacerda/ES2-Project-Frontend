@@ -1,7 +1,9 @@
 export default {
   palette: {
     primary: {
-      main: '#157AFB'
+      main: '#157AFB',
+      contrastText: '#fff',
+      opacityText: 0.7,
     }
   },
   // Enable typography v2: https://material-ui.com/style/typography/#migration-to-typography-v2
@@ -22,6 +24,11 @@ export default {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center'
+  },
+  flexRowStart: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'start'
   },
   flexRowEnd: {
     display: 'flex',

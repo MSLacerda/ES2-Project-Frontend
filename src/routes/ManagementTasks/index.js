@@ -5,6 +5,6 @@ export default {
   path,
   component: Loadable({
     loader: () =>
-      import(/* webpackChunkName: 'Projects' */ './components/TasksPage')
+      import(/* webpackChunkName: 'ManagementTasksPage' */ './components/ManagementTasksPage')
   })
 }

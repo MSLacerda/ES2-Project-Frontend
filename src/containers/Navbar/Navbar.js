@@ -48,13 +48,7 @@ function Navbar({
             )}
           </Toolbar>
           {window.location.pathname.indexOf('tasks') != -1 ? (
-            <Tabs
-              onChange={e => {
-                console.log(e)
-              }}>
-              <Tab label={'Exercicios'} />
-              <Tab label={'Resultados'} />
-            </Tabs>
+            ''
           ) : (
             ''
           )}
