@@ -4,11 +4,18 @@ export default {
       main: '#157AFB',
       contrastText: '#fff',
       opacityText: 0.7,
+    },
+    white: {
+      main: '#fff'
+    },
+    orange: {
+      lighter: '#FF7C4F',
+      main: '#FF7444'
     }
   },
   // Enable typography v2: https://material-ui.com/style/typography/#migration-to-typography-v2
   typography: {
-    useNextVariants: true,
+    fontFamily: '"Product Sans Regular", serif',
   },
   flexColumnStart: {
     display: 'flex',
@@ -34,5 +41,8 @@ export default {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'flex-end'
+  }, 
+  spacing: {
+    goldenRatio: 1.618,
   }
 }

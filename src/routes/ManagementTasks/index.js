@@ -1,4 +1,4 @@
-import { TASKS_PATH as path } from 'constants/paths'
+import { MANAGEMENT_PATH as path } from 'constants/paths'
 import { Loadable } from 'utils/components'
 
 export default {

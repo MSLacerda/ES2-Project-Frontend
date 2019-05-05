@@ -9,6 +9,8 @@ import NewProjectDialog from '../NewProjectDialog'
 import { renderChildren } from 'utils/router'
 import projectImage from 'static/images/cards/project-planning.jpg'
 import devImage from 'static/images/cards/source-code.jpg'
+import { Grid, Typography } from '@material-ui/core';
+import Header from 'components/Header';
 
 function ProjectsPage({
   projects,
@@ -32,40 +34,33 @@ function ProjectsPage({
         path={match.path}
         render={() => (
           <div className={classes.root}>
-            <NewProjectDialog
-              onSubmit={addProject}
-              open={newDialogOpen}
-              onRequestClose={toggleDialog}
-            />
-            <div className={classes.tiles}>
-              <ProjectTile
-                onSelect={() => goToTasks('management')}
-                onDelete={() => console.log('delete')}
-                image={projectImage}
-                keywords={['Diagramas', 'Casos de Uso']}
-                name={'Gerenciamento de Projeto'}
-              />
-
-              <ProjectTile
-                onSelect={() => goToTasks('development')}
-                onDelete={() => console.log('delete')}
-                image={devImage}
-                keywords={['Programação']}
-                name={'Desenvolvimento'}
-              />
-              {/* <NewProjectTile onClick={toggleDialog} />
-              {!isEmpty(projects) &&
-                projects.map((project, ind) => (
+            <div className={classes.projectsWrapper}> 
+              <Grid container spacing={8} justify="center">
+                <Grid item xs={12} xl={8} md={8} sm={12}>
+                  <Header title="Modulos" subtitle="Selecione um modulo" />
+                </Grid>
+                <Grid item xs={12} xl={8} md={8} sm={12}>
                   <ProjectTile
-                    key={`Project-${project.id}-${ind}`}
-                    name={project.name}
-                    onSelect={() => goToProject(project.id)}
-                    onDelete={() => deleteProject(project.id)}
+                    onSelect={() => goToTasks('management')}
+                    onDelete={() => console.log('delete')}
+                    image={projectImage}
+                    keywords={['Diagramas', 'Casos de Uso']}
+                    name={'Gerenciamento de Projeto'}
                   />
-                ))} */}
+                </Grid>
+                <Grid item xs={12} xl={8} md={8} sm={12}>
+                  <ProjectTile
+                    onSelect={() => goToTasks('development')}
+                    onDelete={() => console.log('delete')}
+                    image={devImage}
+                    keywords={['Programação']}
+                    name={'Desenvolvimento'}
+                  />
+                </Grid>
+              </Grid>
             </div>
           </div>
-        )}
+          )}
       />
     </Switch>
   )

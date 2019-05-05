@@ -22,9 +22,7 @@ function LoginPage({ emailLogin, googleLogin, onSubmitFail, classes }) {
           </Link>
         </div>
       </div>
-      <div className={classes.rightPanel}>
-        test
-      </div>
+      <div className={classes.rightPanel}></div>
     </div>
   );
   // return (

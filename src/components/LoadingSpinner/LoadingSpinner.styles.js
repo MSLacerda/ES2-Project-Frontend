@@ -11,6 +11,6 @@ export default () => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    height: '50%'
+    height: '100%'
   }
 })

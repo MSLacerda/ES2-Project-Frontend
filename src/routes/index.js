@@ -7,8 +7,8 @@ import SignupRoute from './Signup'
 import ProjectsRoute from './Projects'
 import AccountRoute from './Account'
 import NotFoundRoute from './NotFound'
-import ManagementTasks from './ManagementTasks'
-import DevTasks from './DevTasks'
+import ManagementRoute from './ManagementTasks'
+import DevRoute from './DevTasks'
 
 export default function createRoutes(store) {
   return (
@@ -21,8 +21,8 @@ export default function createRoutes(store) {
           ProjectsRoute,
           SignupRoute,
           LoginRoute,
-          ManagementTasks,
-          DevTasks
+          ManagementRoute,
+          DevRoute
 
           /* Add More Routes Here */
         ].map((settings, index) => (

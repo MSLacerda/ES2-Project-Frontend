@@ -23,7 +23,7 @@ function Navbar({
   return (
     <div>
       {authExists ? (
-        <AppBar position="static">
+        <AppBar className={classes.appbar} position="static">
           <Toolbar>
             <Typography
               variant="h6"
@@ -47,11 +47,6 @@ function Navbar({
               <LoginMenu />
             )}
           </Toolbar>
-          {window.location.pathname.indexOf('tasks') != -1 ? (
-            ''
-          ) : (
-            ''
-          )}
         </AppBar>
       ) : (
         <span></span>

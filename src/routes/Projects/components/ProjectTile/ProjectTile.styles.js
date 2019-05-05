@@ -1,14 +1,13 @@
 export default theme => ({
   root: {
-    display: 'flex',
-    width: '100%',
     marginBottom: theme.spacing.unit * 4
   },
   details: {
     ...theme.flexColumnCenter
   },
   chip: {
-    margin: theme.spacing.unit
+    margin: theme.spacing.unit,
+    marginLeft: 0
   },
   top: {
     display: 'flex',
@@ -26,10 +25,9 @@ export default theme => ({
   },
   projectDescription: {
     // fontSize: '1rem',
-    fontWeight: 'lighter'
+    opacity: theme.palette.primary.opacityText,
   },
   openWrapper: {
-    ...theme.flexRowEnd,
     paddingTop: theme.spacing.unit * 1
   },
   name: {

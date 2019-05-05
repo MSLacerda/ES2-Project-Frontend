@@ -6,7 +6,7 @@ function LoadingSpinner({ size, classes }) {
   return (
     <div className={classes.root}>
       <div className={classes.progress}>
-        <CircularProgress mode="indeterminate" size={size || 80} />
+        <CircularProgress mode="indeterminate" size={size || 20} />
       </div>
     </div>
   )

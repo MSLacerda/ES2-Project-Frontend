@@ -5,7 +5,9 @@ import createStore from './store/createStore'
 import { version } from '../package.json'
 import { env } from './config'
 import App from './containers/App'
+import './assets/custom-fonts/style.css'
 import './index.css'
+
 
 // import * as serviceWorker from './serviceWorker'
 
@@ -22,6 +24,8 @@ const initialState = window.___INITIAL_STATE__ || {
 }
 const store = createStore(initialState)
 const routes = require('./routes/index').default(store)
+require('typeface-roboto')
+
 
 ReactDOM.render(
   <App store={store} routes={routes} />,

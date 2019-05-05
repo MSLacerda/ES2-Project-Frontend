@@ -8,12 +8,15 @@ import { withNotifications } from 'modules/notification'
 import { spinnerWhileLoading } from 'utils/components'
 import { UserIsAuthenticated } from 'utils/router'
 import styles from './ManagementTasksPage.styles'
+import { MANAGEMENT_PATH } from 'constants/paths';
 
 export default compose(
   // Set component display name (more clear in dev/error tools)
   setDisplayName('EnhancedTasksPage'),
   // redirect to /login if user is not logged in
   UserIsAuthenticated,
+  // Add props.router
+  withRouter,
   // Map auth uid from state to props
   connect(({ firebase: { auth: { uid } } }) => ({ uid })),
   // Wait for uid to exist before going further
@@ -47,6 +50,9 @@ export default compose(
       })
     }
   ),
+  withHandlers({
+
+  }),
   // Add styles as props.classes
   withStyles(styles)
 )

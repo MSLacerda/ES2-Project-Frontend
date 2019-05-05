@@ -8,8 +8,17 @@
     padding: 0;
     height: 100%;
     background-color: #FFF;
-    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'Product Sans Regular', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
+
+  p, span, a {
+    font-family: 'Roboto';
+  }
+
+  button > span, .button > span {
+    font-family: 'Product Sans Medium Regular';
+  }
+
   a {
     text-decoration: none !important;
   }

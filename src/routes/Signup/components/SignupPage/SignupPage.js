@@ -22,9 +22,7 @@ function SignupPage({ emailSignup, googleLogin, onSubmitFail, classes }) {
           </Link>
         </div>
       </div>
-      <div className={classes.rightPanel}>
-        test
-      </div>
+      <div className={classes.rightPanel}></div>
     </div>
   )
 }
