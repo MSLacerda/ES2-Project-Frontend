@@ -8,8 +8,8 @@ import { withRouter } from 'react-router-dom'
 import { setDisplayName } from 'recompose'
 import { UserIsAuthenticated } from 'utils/router'
 import styles from './UserCases.styles'
-import { spinnerWhileLoading } from 'utils/components';
-import { withFirebase } from 'react-redux-firebase';
+import { spinnerWhileLoading } from 'utils/components'
+import { withFirebase } from 'react-redux-firebase'
 
 export default compose(
   // Set component display name (more clear in dev/error tools)

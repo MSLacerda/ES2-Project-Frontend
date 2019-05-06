@@ -13,7 +13,11 @@ function SignupPage({ emailSignup, googleLogin, onSubmitFail, classes }) {
         <SignupForm onSubmit={emailSignup} onSubmitFail={onSubmitFail} />
         <div className={classes.orLabel}>ou</div>
         <div className={classes.providers}>
-          <GoogleButton type="light" label="Login com o Google"  onClick={googleLogin} />
+          <GoogleButton
+            type="light"
+            label="Login com o Google"
+            onClick={googleLogin}
+          />
         </div>
         <div className={classes.login}>
           <span className={classes.loginLabel}> Já tem uma conta?</span>
@@ -22,7 +26,7 @@ function SignupPage({ emailSignup, googleLogin, onSubmitFail, classes }) {
           </Link>
         </div>
       </div>
-      <div className={classes.rightPanel}></div>
+      <div className={classes.rightPanel} />
     </div>
   )
 }

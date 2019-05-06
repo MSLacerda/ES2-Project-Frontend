@@ -8,8 +8,8 @@ import { withRouter } from 'react-router-dom'
 import { setDisplayName, withStateHandlers } from 'recompose'
 import { UserIsAuthenticated } from 'utils/router'
 import styles from './CodePage.styles'
-import { spinnerWhileLoading } from 'utils/components';
-import { withFirebase } from 'react-redux-firebase';
+import { spinnerWhileLoading } from 'utils/components'
+import { withFirebase } from 'react-redux-firebase'
 
 export default compose(
   // Set component display name (more clear in dev/error tools)
@@ -21,8 +21,8 @@ export default compose(
   withStateHandlers(
     // Setup initial state
     ({ codeInitial = '' }) => ({
-        code: codeInitial
-    }),
+      code: codeInitial
+    })
   ),
   // Add styles as props.classes
   withStyles(styles)

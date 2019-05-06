@@ -5,5 +5,3 @@ export const SIGNUP_PATH = '/signup'
 export const TASKS_PATH = '/tasks'
 export const MANAGEMENT_PATH = TASKS_PATH + '/management'
 export const DEV_PATH = TASKS_PATH + '/development'
-
-

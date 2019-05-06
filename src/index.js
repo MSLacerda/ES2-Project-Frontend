@@ -8,7 +8,6 @@ import App from './containers/App'
 import './assets/custom-fonts/style.css'
 import './index.css'
 
-
 // import * as serviceWorker from './serviceWorker'
 
 // Window Variables
@@ -25,7 +24,6 @@ const initialState = window.___INITIAL_STATE__ || {
 const store = createStore(initialState)
 const routes = require('./routes/index').default(store)
 require('typeface-roboto')
-
 
 ReactDOM.render(
   <App store={store} routes={routes} />,

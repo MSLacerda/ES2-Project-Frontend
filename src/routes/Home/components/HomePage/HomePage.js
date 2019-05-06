@@ -7,13 +7,12 @@ import {
   LOGIN_PATH,
   SIGNUP_PATH
 } from 'constants/paths'
-import { Typography, Button, Grid } from '@material-ui/core';
+import { Typography, Button, Grid } from '@material-ui/core'
 
 const authWrapperUrl = 'https://github.com/mjrussell/redux-auth-wrapper'
 const reactRouterUrl = 'https://github.com/ReactTraining/react-router'
 
 function Home({ classes, authExists, goTo }) {
-  console.log(authExists);
   return (
     <div className={classes.root}>
       <Grid>
@@ -30,22 +29,31 @@ function Home({ classes, authExists, goTo }) {
         <Grid item>
           <div className={classes.buttons}>
             {authExists ? (
-              <Button variant="outlined" className={classes.signup} onClick={() => goTo(LIST_PATH)}>
+              <Button
+                variant="outlined"
+                className={classes.signup}
+                onClick={() => goTo(LIST_PATH)}>
                 Modulos
               </Button>
             ) : (
-                <React.Fragment>
-                  <Button variant="contained" color="secondary" className={classes.login} onClick={() => goTo(LOGIN_PATH)}>
-                    Login
+              <React.Fragment>
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  className={classes.login}
+                  onClick={() => goTo(LOGIN_PATH)}>
+                  Login
                 </Button>
-                  <Button variant="outlined" className={classes.signup} onClick={() => goTo(SIGNUP_PATH)}>
-                    Cadastre-se
+                <Button
+                  variant="outlined"
+                  className={classes.signup}
+                  onClick={() => goTo(SIGNUP_PATH)}>
+                  Cadastre-se
                 </Button>
-                </React.Fragment>
-              )}
+              </React.Fragment>
+            )}
           </div>
         </Grid>
-
       </Grid>
     </div>
   )
@@ -54,7 +62,7 @@ function Home({ classes, authExists, goTo }) {
 Home.propTypes = {
   classes: PropTypes.object.isRequired, // from enhancer (withStyles)
   authExists: PropTypes.bool, // from enhancer (withProps - auth)
-  goTo: PropTypes.func,
+  goTo: PropTypes.func
 }
 
 export default Home

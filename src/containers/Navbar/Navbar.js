@@ -49,7 +49,7 @@ function Navbar({
           </Toolbar>
         </AppBar>
       ) : (
-        <span></span>
+        <span />
       )}
     </div>
   )

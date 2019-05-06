@@ -9,8 +9,8 @@ import NewProjectDialog from '../NewProjectDialog'
 import { renderChildren } from 'utils/router'
 import projectImage from 'static/images/cards/project-planning.jpg'
 import devImage from 'static/images/cards/source-code.jpg'
-import { Grid, Typography } from '@material-ui/core';
-import Header from 'components/Header';
+import { Grid, Typography } from '@material-ui/core'
+import Header from 'components/Header'
 
 function ProjectsPage({
   projects,
@@ -34,7 +34,7 @@ function ProjectsPage({
         path={match.path}
         render={() => (
           <div className={classes.root}>
-            <div className={classes.projectsWrapper}> 
+            <div className={classes.projectsWrapper}>
               <Grid container spacing={8} justify="center">
                 <Grid item xs={12} xl={8} md={8} sm={12}>
                   <Header title="Modulos" subtitle="Selecione um modulo" />
@@ -60,7 +60,7 @@ function ProjectsPage({
               </Grid>
             </div>
           </div>
-          )}
+        )}
       />
     </Switch>
   )

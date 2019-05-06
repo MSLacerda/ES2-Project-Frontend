@@ -4,8 +4,8 @@ import { Field } from 'redux-form'
 import { TextField } from 'redux-form-material-ui'
 import Button from '@material-ui/core/Button'
 import { required, validateEmail } from 'utils/form'
-import { Link } from 'react-router-dom';
-import { LOGIN_PATH, SIGNUP_PATH } from 'constants/paths';
+import { Link } from 'react-router-dom'
+import { LOGIN_PATH, SIGNUP_PATH } from 'constants/paths'
 
 function LoginForm({ pristine, submitting, handleSubmit, classes }) {
   return (

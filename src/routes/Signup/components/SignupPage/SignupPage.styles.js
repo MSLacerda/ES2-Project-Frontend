@@ -7,7 +7,7 @@ export default theme => ({
     width: '100%',
     height: '100vh',
     fontWeight: 400,
-    backgroundColor: '#fff',
+    backgroundColor: '#fff'
   },
   rightPanel: {
     ...theme.flexColumnCenter,
@@ -24,7 +24,7 @@ export default theme => ({
   leftPanel: {
     ...theme.flexColumnCenter,
     justifyContent: 'center',
-    width: '100%',
+    width: '100%'
   },
   orLabel: {
     marginTop: '1rem',

@@ -57,7 +57,10 @@ export function requestPermission() {
     .requestPermission()
     .then(getTokenAndWriteToProfile)
     .catch(err => {
-      console.error('Impossibilitado d obter as permissões de notificação: ', err) // eslint-disable-line no-console
+      console.error(
+        'Impossibilitado d obter as permissões de notificação: ',
+        err
+      ) // eslint-disable-line no-console
       return Promise.reject(err)
     })
 }

@@ -28,14 +28,12 @@ export default compose(
     onSubmitFail: props => (formErrs, dispatch, err) =>
       props.showError(formErrs ? 'Form Invalid' : err.message || 'Error'),
     googleLogin: ({ firebase, showError }) => () =>
-      firebase
-        .login({ provider: 'google', type: 'popup' })
-        .catch(err => {
-          showError(err.message)
-        }),
+      firebase.login({ provider: 'google', type: 'popup' }).catch(err => {
+        showError(err.message)
+      }),
     emailLogin: ({ firebase, showError }) => creds =>
       firebase.login(creds).catch(err => {
-        console.log(err);
+        console.log(err)
         const translatedMessage = translate[err.code]
 
         showError(translatedMessage)

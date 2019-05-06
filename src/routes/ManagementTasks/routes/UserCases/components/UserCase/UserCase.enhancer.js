@@ -5,10 +5,15 @@ import { get } from 'lodash'
 import firestoreConnect from 'react-redux-firebase/lib/firestoreConnect'
 import { withStyles } from '@material-ui/core/styles'
 import { withRouter } from 'react-router-dom'
-import { setDisplayName, withStateHandlers, setPropTypes, withProps } from 'recompose'
+import {
+  setDisplayName,
+  withStateHandlers,
+  setPropTypes,
+  withProps
+} from 'recompose'
 import { UserIsAuthenticated } from 'utils/router'
 import styles from './UserCase.styles'
-import { addToSelecteds } from 'routes/ManagementTasks/modules';
+import { addToSelecteds } from 'routes/ManagementTasks/modules'
 
 export default compose(
   // Set component display name (more clear in dev/error tools)
@@ -17,14 +22,15 @@ export default compose(
   UserIsAuthenticated,
   // Add state and state handlers as props
   setPropTypes({
-    words: PropTypes.array,
+    words: PropTypes.array
   }),
   withProps(({ words }) => ({
     words
   })),
-  connect(({ management: { selecteds } }) => ({
-    selecteds
-  }),
+  connect(
+    ({ management: { selecteds } }) => ({
+      selecteds
+    }),
     dispatch => ({
       addToSelecteds: item => dispatch(addToSelecteds(item))
     })
@@ -34,22 +40,22 @@ export default compose(
     // Setup initial state
     ({ initialSelectedWords = [], words }) => ({
       selectedWords: initialSelectedWords,
-      words,
+      words
     }),
     // Add state handlers as props
     {
-      addToNoSelected: ({ words }) => (item) => ({
-        words: [...words, item],
+      addToNoSelected: ({ words }) => item => ({
+        words: [...words, item]
       }),
-      removeFromSelected: ({ selectedWords }) => (index) => ({
+      removeFromSelected: ({ selectedWords }) => index => ({
         selectedWords: selectedWords.filter((el, i) => i != index)
       }),
-      removeSelected: ({ words }) => (index) => ({
+      removeSelected: ({ words }) => index => ({
         words: words.filter((el, i) => i != index)
       }),
-      addSelected: ({ selectedWords }) => (item) => ({
+      addSelected: ({ selectedWords }) => item => ({
         selectedWords: [...selectedWords, item]
-      }),
+      })
     }
   ),
   // Add styles as props.classes

@@ -15,12 +15,10 @@ export default compose(
   // Redirect to /login if user is not logged in
   UserIsAuthenticated,
   // connect component with props of reducer
-  connect(({management: { stepperIndex }}) => ({
+  connect(({ management: { stepperIndex } }) => ({
     stepperIndex
   })),
-  withStateHandlers(
-
-  ),
+  withStateHandlers(),
   // Add styles as props.classes
   withStyles(styles)
 )

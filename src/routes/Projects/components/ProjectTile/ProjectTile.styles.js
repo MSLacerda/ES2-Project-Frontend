@@ -25,7 +25,7 @@ export default theme => ({
   },
   projectDescription: {
     // fontSize: '1rem',
-    opacity: theme.palette.primary.opacityText,
+    opacity: theme.palette.primary.opacityText
   },
   openWrapper: {
     paddingTop: theme.spacing.unit * 1

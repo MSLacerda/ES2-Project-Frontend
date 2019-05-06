@@ -3,12 +3,12 @@ export default {
     primary: {
       main: '#157AFB',
       contrastText: '#fff',
-      opacityText: 0.7,
+      opacityText: 0.7
     },
     secondary: {
       main: '#FF7C4F',
       contrastText: '#fff',
-      opacityText: 0.7,
+      opacityText: 0.7
     },
     white: {
       contrastText: '#000',
@@ -22,7 +22,7 @@ export default {
   },
   // Enable typography v2: https://material-ui.com/style/typography/#migration-to-typography-v2
   typography: {
-    fontFamily: '"Product Sans Regular", serif',
+    fontFamily: '"Product Sans Regular", serif'
   },
   flexColumnStart: {
     display: 'flex',
@@ -48,9 +48,9 @@ export default {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'flex-end'
-  }, 
+  },
   spacing: {
-    goldenRatio: 1.618,
+    goldenRatio: 1.618
   },
   custom: {
     button: {
@@ -58,7 +58,7 @@ export default {
       fontWeight: 'normal',
       letterSpacing: '.25px',
       textTransform: 'none',
-      boxShadow: 'none',
+      boxShadow: 'none'
     }
   }
 }

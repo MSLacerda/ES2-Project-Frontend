@@ -7,7 +7,7 @@ import { withNotifications } from 'modules/notification'
 import { spinnerWhileLoading } from 'utils/components'
 import { UserIsAuthenticated } from 'utils/router'
 import styles from './Introduction.styles'
-import { DEV_PATH } from 'constants/paths';
+import { DEV_PATH } from 'constants/paths'
 
 export default compose(
   // Set component display name (more clear in dev/error tools)
@@ -20,9 +20,8 @@ export default compose(
   withNotifications,
   withHandlers({
     goToUserCases: ({ history }) => () => {
-
-      history.push(`${DEV_PATH}/code`);
-    },
+      history.push(`${DEV_PATH}/code`)
+    }
   }),
   // Add styles as props.classes
   withStyles(styles)

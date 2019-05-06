@@ -8,28 +8,28 @@ export default theme => ({
     padding: `0px ${theme.spacing.unit * 4}px`,
     height: '100vh',
     backgroundImage: `url(${bgImg})`,
-    backgroundRepeat:'no-repeat',
+    backgroundRepeat: 'no-repeat',
     backgroundPosition: '-4rem 35rem',
     [theme.breakpoints.up('sm')]: {
-      backgroundPosition: '-4rem 36rem',
-    },    
+      backgroundPosition: '-4rem 36rem'
+    },
     [theme.breakpoints.down('sm')]: {
       backgroundPosition: '-4rem 32rem',
-      backgroundSize: '15rem',
+      backgroundSize: '15rem'
     },
     [theme.breakpoints.down('xs')]: {
-      backgroundPosition: '-4rem 32rem',
+      backgroundPosition: '-4rem 32rem'
     },
     [theme.breakpoints.up('md')]: {
-      backgroundPosition: '30rem 8rem',
+      backgroundPosition: '30rem 8rem'
     },
     [theme.breakpoints.up('lg')]: {
       backgroundPosition: '37rem 2rem',
       backgroundSize: '34rem'
     }
-   },
+  },
   hero: {
-    color: theme.palette.primary.contrastText,
+    color: theme.palette.primary.contrastText
   },
   description: {
     color: theme.palette.primary.contrastText,
@@ -37,14 +37,14 @@ export default theme => ({
   },
   buttons: {
     paddingTop: theme.spacing.unit * 2,
-    wordBreak: 'break-line',
+    wordBreak: 'break-line'
   },
   login: {
     boxShadow: 'none',
     marginRight: theme.spacing.unit,
     backgroundColor: theme.palette.orange.main,
     '&:hover': {
-      backgroundColor: theme.palette.orange.lighter,
+      backgroundColor: theme.palette.orange.lighter
     }
   },
   signup: {
@@ -52,8 +52,7 @@ export default theme => ({
     color: theme.palette.white.main,
     '&:hover': {
       backgroundColor: theme.palette.white.lighter,
-      color:theme.palette.white.contrastText
-
+      color: theme.palette.white.contrastText
     }
   }
 })
