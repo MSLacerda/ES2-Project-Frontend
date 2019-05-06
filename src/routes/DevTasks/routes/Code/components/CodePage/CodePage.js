@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
-import { Grid, Paper } from '@material-ui/core'
+import { Grid, Paper, Button } from '@material-ui/core'
 import Header from 'components/Header'
 import MonacoEditor from 'react-monaco-editor'
 
@@ -38,6 +38,15 @@ function CodePage({ classes, code }) {
             onChange={onChange}
             editorDidMount={editorDidMount}
           />
+        </Grid>
+
+        <Grid item xs={12} sm={8} lg={8}>
+          <Button
+            className={classes.submit}
+            variant="contained"
+            color="primary">
+            Submeter
+          </Button>
         </Grid>
       </Grid>
     </div>

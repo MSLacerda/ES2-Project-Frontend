@@ -6,5 +6,8 @@ export default theme => ({
     ...theme.flexRowCenter,
     alignItems: 'center',
     paddingTop: theme.spacing.unit * 8
+  },
+  submit: {
+    ...theme.custom.button
   }
 })
