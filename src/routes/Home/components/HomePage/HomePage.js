@@ -12,7 +12,8 @@ import { Typography, Button, Grid } from '@material-ui/core';
 const authWrapperUrl = 'https://github.com/mjrussell/redux-auth-wrapper'
 const reactRouterUrl = 'https://github.com/ReactTraining/react-router'
 
-function Home({ classes }) {
+function Home({ classes, authExists, goTo }) {
+  console.log(authExists);
   return (
     <div className={classes.root}>
       <Grid>
@@ -28,12 +29,20 @@ function Home({ classes }) {
         </Grid>
         <Grid item>
           <div className={classes.buttons}>
-            <Button variant="contained" color="secondary" className={classes.login}>
-              Login
-            </Button>
-            <Button variant="outlined" className={classes.signup}>
-              Cadastre-se
-            </Button>
+            {authExists ? (
+              <Button variant="outlined" className={classes.signup} onClick={() => goTo(LIST_PATH)}>
+                Modulos
+              </Button>
+            ) : (
+                <React.Fragment>
+                  <Button variant="contained" color="secondary" className={classes.login} onClick={() => goTo(LOGIN_PATH)}>
+                    Login
+                </Button>
+                  <Button variant="outlined" className={classes.signup} onClick={() => goTo(SIGNUP_PATH)}>
+                    Cadastre-se
+                </Button>
+                </React.Fragment>
+              )}
           </div>
         </Grid>
 
@@ -43,7 +52,9 @@ function Home({ classes }) {
 }
 
 Home.propTypes = {
-  classes: PropTypes.object.isRequired // from enhancer (withStyles)
+  classes: PropTypes.object.isRequired, // from enhancer (withStyles)
+  authExists: PropTypes.bool, // from enhancer (withProps - auth)
+  goTo: PropTypes.func,
 }
 
 export default Home

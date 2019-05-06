@@ -1,18 +1,16 @@
 export default theme => ({
-    root: {
-      ...theme.flexColumnCenter,
-      paddingTop: theme.spacing.unit * 4,
-      paddingBottom: theme.spacing.unit * 4,
-      flexGrow: '2',
-      boxSizing: 'border-box',
-      overflowY: 'scroll'
-    },
-    tiles: {
-      display: 'flex',
-      justifyContent: 'center',
-      width: '50vw',
-      flexWrap: 'wrap',
-      '-webkit-flex-flow': 'column wrap'
+  root: {
+    flexGrow: 1,
+  },
+  main: {
+    flexGrow: 1,
+    margin: `0 ${theme.spacing.unit * 2}px`,
+    padding: `0 ${theme.spacing.unit * 3}px`,
+    [theme.breakpoints.down('md')] : {
+      padding: `0 ${theme.spacing.unit * .2}px`,
     }
-  })
-  
+  },
+  introduction: {
+    padding: theme.spacing.unit * 3,
+  }
+})

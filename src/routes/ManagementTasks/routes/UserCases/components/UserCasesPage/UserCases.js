@@ -5,19 +5,18 @@ import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
 import { Grid, Paper } from '@material-ui/core';
 import Header from 'components/Header';
+import Stepper from '../Stepper';
 
 function UserCases({ classes, userCases }) {
   console.log(userCases);
   return (
     <div className={classes.root}>
         <Grid spacing={8} container justify="center">
-          <Grid item>
-            <Header title="Caso 01" subtitle="Forme o caso de uso corretamente" />
+          <Grid item xs={12} sm={8} lg={8}>
+            <Header title="Caso de Uso" subtitle="Forme o caso de uso corretamente" />
           </Grid>
-          <Grid item>
-            <Paper elevation={1}>
-
-            </Paper>
+          <Grid item xs={12} sm={8} lg={8}>
+            <Stepper userCases={userCases} />
           </Grid>
         </Grid>
     </div>
@@ -26,7 +25,7 @@ function UserCases({ classes, userCases }) {
 
 UserCases.propTypes = {
   classes: PropTypes.object.isRequired, // from enhancer (withStyles)
-  userCases: PropTypes.object, // User cases of firebase database
+  userCases: PropTypes.array, // User cases of firebase database
 }
 
 export default UserCases

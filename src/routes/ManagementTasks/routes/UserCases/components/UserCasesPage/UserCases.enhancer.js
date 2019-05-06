@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
-import { get } from 'lodash'
+import { values } from 'lodash'
 import firestoreConnect from 'react-redux-firebase/lib/firestoreConnect'
 import { withStyles } from '@material-ui/core/styles'
 import { withRouter } from 'react-router-dom'
@@ -18,12 +18,10 @@ export default compose(
   UserIsAuthenticated,
   withFirebase,
   // Create listeners
-  firestoreConnect(() => [{
-    collection: 'userCases',
-  }]),
+  firestoreConnect(['userCases']),
   // Map projects from state to props
-  connect(({ firestore: { data }}) => ({
-    userCases: data
+  connect(({ firestore: { data: { userCases } } }) => ({
+    userCases: values(userCases)
   })),
   // Wait for uid to exist before going further
   spinnerWhileLoading(['userCases']),

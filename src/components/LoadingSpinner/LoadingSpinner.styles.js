@@ -5,7 +5,7 @@ export default () => ({
     flexDirection: 'column',
     justifyContent: 'flex-start',
     paddingTop: '7rem',
-    height: '100%'
+    height: '80vh'
   },
   progress: {
     display: 'flex',

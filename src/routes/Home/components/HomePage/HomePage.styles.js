@@ -19,8 +19,15 @@ export default theme => ({
     },
     [theme.breakpoints.down('xs')]: {
       backgroundPosition: '-4rem 32rem',
+    },
+    [theme.breakpoints.up('md')]: {
+      backgroundPosition: '30rem 8rem',
+    },
+    [theme.breakpoints.up('lg')]: {
+      backgroundPosition: '37rem 2rem',
+      backgroundSize: '34rem'
     }
-  },
+   },
   hero: {
     color: theme.palette.primary.contrastText,
   },
@@ -45,6 +52,8 @@ export default theme => ({
     color: theme.palette.white.main,
     '&:hover': {
       backgroundColor: theme.palette.white.lighter,
+      color:theme.palette.white.contrastText
+
     }
   }
 })

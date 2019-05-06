@@ -1,0 +1,5 @@
+export const STEPPER_NEXT = 'STEPPER_NEXT';
+export const STEPPER_BACK = 'STEPPER_BACK';
+
+export const SELECTEDS_ADD = 'SELECTEDS_ADD';
+export const SELECTEDS_REMOVE = 'SELECTEDS_REMOVE';

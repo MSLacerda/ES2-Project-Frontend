@@ -13,6 +13,11 @@ service cloud.firestore {
       allow write: if request.auth.uid == userId;
     }
 
+    match /userCases/{userCasesId} {
+      allow read;
+      allow write: if false; // only written to by indexUser cloud function
+    }
+
     // Public user profiles
     match /users_public/{userId} {
       allow read;
@@ -27,16 +32,6 @@ service cloud.firestore {
       // Rules apply to all child collections
       match /{allChildren=**} {
         allow read, write: if isOwner(get(/databases/$(database)/documents/projects/$(projectId)));
-      }
-    }
-
-    match /userCases {
-      // Only projects you own can be viewed
-      allow create: if isOwner(request.resource);
-      allow read, update: if isOwner(resource);
-      // Rules apply to all child collections
-      match /{allChildren=**} {
-        allow read, write: if isOwner(get(/databases/$(database)/documents/userCases/));
       }
     }
   }

@@ -5,7 +5,14 @@ export default {
       contrastText: '#fff',
       opacityText: 0.7,
     },
+    secondary: {
+      main: '#FF7C4F',
+      contrastText: '#fff',
+      opacityText: 0.7,
+    },
     white: {
+      contrastText: '#000',
+      lighter: '#F8FBFF',
       main: '#fff'
     },
     orange: {
@@ -44,5 +51,14 @@ export default {
   }, 
   spacing: {
     goldenRatio: 1.618,
+  },
+  custom: {
+    button: {
+      fontFamily: 'Product Sans Medium Regular',
+      fontWeight: 'normal',
+      letterSpacing: '.25px',
+      textTransform: 'none',
+      boxShadow: 'none',
+    }
   }
 }

@@ -12,9 +12,11 @@ export default theme => ({
   rightPanel: {
     ...theme.flexColumnCenter,
     width: '100%',
+    height: '100vh',
     justifyContent: 'center',
     alignItems: 'center',
     background: `url(${bgImg}) no-repeat`,
+    backgroundSize: 'cover',
     [theme.breakpoints.down('sm')]: {
       display: 'none'
     }
