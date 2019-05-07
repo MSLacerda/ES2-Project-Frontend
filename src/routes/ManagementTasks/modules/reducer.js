@@ -3,17 +3,15 @@ import {
   STEPPER_NEXT,
   STEPPER_BACK,
   SELECTEDS_ADD,
-  SELECTEDS_REMOVE
+  SELECTEDS_REMOVE,
+  ACTUAL_ADD,
+  ACTUAL_REMOVE
 } from './actionTypes'
 
 const defaultState = {
   stepperIndex: 0,
-  selecteds: [
-    {
-      id: '0',
-      selectedWord: []
-    }
-  ]
+  allUseCases: [],
+  actualUseCase: []
 }
 
 function nextStepperHandler(state, { payload }) {
@@ -27,15 +25,32 @@ function backStepperHandler(state, { payload }) {
   return { ...state, stepperIndex: state.stepperIndex - 1 }
 }
 
-function addSelectedsHandler(state, { payload: { id, selectedWord } }) {
+function addSelectedsHandler(state, { payload: { id, useCase } }) {
   return {
     ...state,
-    selecteds: [...state.selecteds, { id: id, selectedWord: selectedWord }]
+    allUseCases: [...state.allUseCases, { id: id, useCase: useCase }]
   }
 }
 
 function removeSelectedsHandler(state, { payload: { id } }) {
-  return { ...state, selecteds: state.selecteds.filter(item => item.id != id) }
+  return {
+    ...state,
+    allUseCases: state.allUseCases.filter(item => item.id != id)
+  }
+}
+
+function addToActualHandler(state, { payload }) {
+  return {
+    ...state,
+    actualUseCase: [...state.actualUseCase, payload]
+  }
+}
+
+function removeFromActualHandler(state, { payload }) {
+  return {
+    ...state,
+    actualUseCase: state.actualUseCase.filter((item, index) => index != payload)
+  }
 }
 
 export const reducer = handleActions(
@@ -43,7 +58,9 @@ export const reducer = handleActions(
     [STEPPER_NEXT]: nextStepperHandler,
     [STEPPER_BACK]: backStepperHandler,
     [SELECTEDS_ADD]: addSelectedsHandler,
-    [SELECTEDS_REMOVE]: removeSelectedsHandler
+    [SELECTEDS_REMOVE]: removeSelectedsHandler,
+    [ACTUAL_ADD]: addToActualHandler,
+    [ACTUAL_REMOVE]: removeFromActualHandler
   },
   defaultState
 )

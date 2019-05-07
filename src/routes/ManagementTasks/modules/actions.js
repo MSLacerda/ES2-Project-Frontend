@@ -1,13 +1,18 @@
-import { createActions } from 'redux-actions'
+import { createActions, createAction } from 'redux-actions'
 import {
   STEPPER_NEXT,
   STEPPER_BACK,
   SELECTEDS_ADD,
-  SELECTEDS_REMOVE
+  SELECTEDS_REMOVE,
+  ACTUAL_ADD,
+  ACTUAL_REMOVE
 } from './actionTypes'
 
-export const nextStep = createActions(STEPPER_NEXT)
-export const backStep = createActions(STEPPER_BACK)
+export const nextStep = createAction(STEPPER_NEXT)
+export const backStep = createAction(STEPPER_BACK)
 
-export const addToSelecteds = createActions(SELECTEDS_ADD)
-export const removeFromSelecteds = createActions(SELECTEDS_REMOVE)
+export const addToSelecteds = createAction(SELECTEDS_ADD)
+export const removeFromSelecteds = createAction(SELECTEDS_REMOVE)
+
+export const addToActual = createAction(ACTUAL_ADD)
+export const removeFromActual = createAction(ACTUAL_REMOVE)

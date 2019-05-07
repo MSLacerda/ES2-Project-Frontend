@@ -4,8 +4,7 @@ import { Grid, Paper, Button, Typography } from '@material-ui/core'
 import UserCase from '../UserCase'
 import { map, shuffle } from 'lodash'
 
-function Stepper({ classes, stepperIndex, userCases }) {
-  console.log(userCases)
+function Stepper({ classes, stepperIndex, userCases, actualUseCase }) {
   return (
     <Paper elevation={1}>
       <div className={classes.root}>
@@ -25,7 +24,8 @@ function Stepper({ classes, stepperIndex, userCases }) {
               color="primary"
               variant="contained"
               className={classes.next}
-              disabled={false}>
+              disabled={!actualUseCase.length}
+              onClick={() => {}}>
               Pronto
             </Button>
             <Button color="secondary" className={classes.back}>
@@ -40,7 +40,9 @@ function Stepper({ classes, stepperIndex, userCases }) {
 
 Stepper.propTypes = {
   classes: PropTypes.object.isRequired, // from enhancer (withStyles)
+  addToSelecteds: PropTypes.func,
   userCases: PropTypes.array,
+  actualUseCase: PropTypes.array,
   stepperIndex: PropTypes.number
 }
 

@@ -13,7 +13,10 @@ import {
 } from 'recompose'
 import { UserIsAuthenticated } from 'utils/router'
 import styles from './UserCase.styles'
-import { addToSelecteds } from 'routes/ManagementTasks/modules'
+import {
+  addToActual as addToActualAction,
+  removeFromActual as removeFromActualAction
+} from 'routes/ManagementTasks/modules'
 
 export default compose(
   // Set component display name (more clear in dev/error tools)
@@ -28,35 +31,36 @@ export default compose(
     words
   })),
   connect(
-    ({ management: { selecteds } }) => ({
-      selecteds
+    ({ management: { actualUseCase, allUseCases } }) => ({
+      actualUseCase,
+      allUseCases
     }),
     dispatch => ({
-      addToSelecteds: item => dispatch(addToSelecteds(item))
+      addToActual: item => dispatch(addToActualAction(item)),
+      removeFromActual: index => dispatch(removeFromActualAction(index))
     })
   ),
   // Add state and state handlers as props
   withStateHandlers(
     // Setup initial state
-    ({ initialSelectedWords = [], words }) => ({
-      selectedWords: initialSelectedWords,
+    ({ words }) => ({
       words
-    }),
-    // Add state handlers as props
-    {
-      addToNoSelected: ({ words }) => item => ({
-        words: [...words, item]
-      }),
-      removeFromSelected: ({ selectedWords }) => index => ({
-        selectedWords: selectedWords.filter((el, i) => i != index)
-      }),
-      removeSelected: ({ words }) => index => ({
-        words: words.filter((el, i) => i != index)
-      }),
-      addSelected: ({ selectedWords }) => item => ({
-        selectedWords: [...selectedWords, item]
-      })
-    }
+    })
+    // // Add state handlers as props
+    // {
+    //   addToNoSelected: ({ words }) => item => ({
+    //     words: [...words, item]
+    //   }),
+    //   removeFromSelected: ({ selectedWords }) => index => ({
+    //     selectedWords: selectedWords.filter((el, i) => i != index)
+    //   }),
+    //   removeSelected: ({ words }) => index => ({
+    //     words: words.filter((el, i) => i != index)
+    //   }),
+    //   addSelected: ({ selectedWords }) => item => ({
+    //     selectedWords: [...selectedWords, item]
+    //   })
+    // }
   ),
   // Add styles as props.classes
   withStyles(styles)

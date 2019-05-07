@@ -10,17 +10,14 @@ import { map, shuffle } from 'lodash'
 function UserCases({
   classes,
   words,
-  addToSelecteds,
-  addToNoSelected,
-  addSelected,
-  removeSelected,
-  removeFromSelected,
-  selectedWords
+  addToActual,
+  removeFromActual,
+  actualUseCase
 }) {
   return (
     <Grid className={classes.root} container spacing={8}>
       <Grid item xs={12} lg={12}>
-        {selectedWords.map((item, index) => (
+        {actualUseCase.map((item, index) => (
           <Chip
             key={index}
             label={item}
@@ -28,8 +25,7 @@ function UserCases({
             className={classes.chip}
             clickable
             onClick={() => {
-              removeFromSelected(index)
-              addToNoSelected(item)
+              removeFromActual(index)
             }}
           />
         ))}
@@ -49,8 +45,7 @@ function UserCases({
             clickable
             variant="outlined"
             onClick={() => {
-              addSelected(el)
-              removeSelected(index)
+              addToActual(el)
             }}
           />
         ))}
@@ -62,12 +57,9 @@ function UserCases({
 UserCases.propTypes = {
   classes: PropTypes.object.isRequired, // from enhancer (withStyles)
   words: PropTypes.array,
-  addToSelecteds: PropTypes.func,
-  addSelected: PropTypes.func,
-  removeSelected: PropTypes.func,
-  removeFromSelected: PropTypes.func,
-  addToNoSelected: PropTypes.func,
-  selectedWords: PropTypes.array
+  actualUseCase: PropTypes.array,
+  addToActual: PropTypes.func,
+  removeFromActual: PropTypes.func
 }
 
 export default UserCases

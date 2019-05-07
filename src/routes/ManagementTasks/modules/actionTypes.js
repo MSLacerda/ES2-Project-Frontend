@@ -3,3 +3,6 @@ export const STEPPER_BACK = 'STEPPER_BACK'
 
 export const SELECTEDS_ADD = 'SELECTEDS_ADD'
 export const SELECTEDS_REMOVE = 'SELECTEDS_REMOVE'
+
+export const ACTUAL_ADD = 'ACTUAL_ADD'
+export const ACTUAL_REMOVE = 'ACTUAL_REMOVE'

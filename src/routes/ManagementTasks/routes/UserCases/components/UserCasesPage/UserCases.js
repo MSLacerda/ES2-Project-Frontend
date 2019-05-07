@@ -8,6 +8,7 @@ import Header from 'components/Header'
 import Stepper from '../Stepper'
 
 function UserCases({ classes, userCases }) {
+  console.log(userCases)
   return (
     <div className={classes.root}>
       <Grid spacing={8} container justify="center">
