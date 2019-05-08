@@ -14,8 +14,8 @@ function UserCases({ classes, userCases }) {
       <Grid spacing={8} container justify="center">
         <Grid item xs={12} sm={8} lg={8}>
           <Header
-            title="Caso de Uso"
-            subtitle="Forme o caso de uso corretamente"
+            title="Histórias de Usuário"
+            subtitle="Forme o texto corretamente corretamente"
           />
         </Grid>
         <Grid item xs={12} sm={8} lg={8}>

@@ -4,7 +4,15 @@ import { Grid, Paper, Button, Typography } from '@material-ui/core'
 import UserCase from '../UserCase'
 import { map, shuffle } from 'lodash'
 
-function Stepper({ classes, stepperIndex, userCases, actualUseCase }) {
+function Stepper({
+  classes,
+  stepperIndex,
+  userCases,
+  actualUseCase,
+  addToSelecteds,
+  nextStep,
+  prevStep
+}) {
   return (
     <Paper elevation={1}>
       <div className={classes.root}>
@@ -14,7 +22,7 @@ function Stepper({ classes, stepperIndex, userCases, actualUseCase }) {
               {index === stepperIndex ? (
                 <UserCase words={shuffle(el.words)} />
               ) : (
-                ''
+                <> </>
               )}
             </React.Fragment>
           ))}
@@ -24,13 +32,22 @@ function Stepper({ classes, stepperIndex, userCases, actualUseCase }) {
               color="primary"
               variant="contained"
               className={classes.next}
-              disabled={!actualUseCase.length}
-              onClick={() => {}}>
+              disabled={
+                !actualUseCase.length || stepperIndex >= userCases.length
+              }
+              onClick={() => {
+                addToSelecteds(stepperIndex, actualUseCase)
+                nextStep()
+              }}>
               Pronto
             </Button>
-            <Button color="secondary" className={classes.back}>
-              Voltar
-            </Button>
+            {stepperIndex !== 0 ? (
+              <Button color="secondary" className={classes.back}>
+                Voltar
+              </Button>
+            ) : (
+              <> </>
+            )}
           </Grid>
         </Grid>
       </div>
@@ -43,7 +60,9 @@ Stepper.propTypes = {
   addToSelecteds: PropTypes.func,
   userCases: PropTypes.array,
   actualUseCase: PropTypes.array,
-  stepperIndex: PropTypes.number
+  stepperIndex: PropTypes.number,
+  nextStep: PropTypes.func,
+  prevStep: PropTypes.func
 }
 
 export default Stepper

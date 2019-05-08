@@ -44,8 +44,10 @@ function ProjectsPage({
                     onSelect={() => goToTasks('management')}
                     onDelete={() => console.log('delete')}
                     image={projectImage}
-                    keywords={['Diagramas', 'Casos de Uso']}
-                    name={'Gerenciamento de Projeto'}
+                    keywords={['Diagramas', 'Histórias de Usuário']}
+                    name={'Análise e Gerenciamento de Projeto'}
+                    description="Exercite suas habilidades de analista de projeto, criando e resolvendo os desafios propostos. 
+                    Neste módulo você irá criar histórias de usuários e diagramas de caso de uso."
                   />
                 </Grid>
                 <Grid item xs={12} xl={8} md={8} sm={12}>
@@ -55,6 +57,8 @@ function ProjectsPage({
                     image={devImage}
                     keywords={['Programação']}
                     name={'Desenvolvimento'}
+                    description="Amplie suas habilidades de desenvolvedor, resolvendo com programação o desafio proposto. 
+                    Neste módulo sua tarefa é solucionar o problema utilizando toda sua capacidade com linguagens de programação"
                   />
                 </Grid>
               </Grid>

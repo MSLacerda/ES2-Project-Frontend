@@ -15,14 +15,14 @@ const defaultState = {
 }
 
 function nextStepperHandler(state, { payload }) {
-  return { ...state, stepperIndex: state.stepperIndex + 1 }
+  return { ...state, stepperIndex: state.stepperIndex + 1, actualUseCase: [] }
 }
 
 function backStepperHandler(state, { payload }) {
   if (state.stepperIndex === 0) {
     return state
   }
-  return { ...state, stepperIndex: state.stepperIndex - 1 }
+  return { ...state, stepperIndex: state.stepperIndex - 1, actualUseCase: [] }
 }
 
 function addSelectedsHandler(state, { payload: { id, useCase } }) {

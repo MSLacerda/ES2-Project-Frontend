@@ -30,7 +30,7 @@ function ManagementTasksPage({ classes, match, auth }) {
                 <Grid item sm={12} xs={12} lg={10} xl={10} md={10}>
                   <Header
                     title="Gerenciamento de Projetos"
-                    subtitle="Casos de Uso"
+                    subtitle="Histórias de Usuário"
                   />
                 </Grid>
                 <Grid item sm={12} xs={12} lg={10} xl={10} md={10}>

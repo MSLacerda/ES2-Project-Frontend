@@ -9,7 +9,7 @@ import {
 } from './actionTypes'
 
 export const nextStep = createAction(STEPPER_NEXT)
-export const backStep = createAction(STEPPER_BACK)
+export const prevStep = createAction(STEPPER_BACK)
 
 export const addToSelecteds = createAction(SELECTEDS_ADD)
 export const removeFromSelecteds = createAction(SELECTEDS_REMOVE)

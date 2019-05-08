@@ -14,7 +14,8 @@ export default theme => ({
     fontWeight: '300'
   },
   begin: {
-    ...theme.custom.button
+    ...theme.custom.button,
+    marginTop: theme.spacing.unit * 2
   },
   subtitle: {
     color: theme.palette.primary.contrastText,

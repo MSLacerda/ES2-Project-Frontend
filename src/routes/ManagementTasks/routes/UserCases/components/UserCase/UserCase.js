@@ -32,7 +32,8 @@ function UserCases({
       </Grid>
       <Grid item xs={12} lg={12}>
         <Typography variant="h5" component="h5">
-          Escolha as plavras para formar o caso de uso
+          Escolha as plavras para formar corretamente as histórias de usuário,
+          de acordo com as especificações do projeto.
         </Typography>
       </Grid>
       <Grid item xs={12} lg={12}>

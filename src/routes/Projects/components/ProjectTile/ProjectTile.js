@@ -22,7 +22,8 @@ function ProjectTile({
   showDelete,
   classes,
   image,
-  keywords
+  keywords,
+  description
 }) {
   return (
     <Card className={classes.root}>
@@ -36,10 +37,7 @@ function ProjectTile({
           <Typography component="h5" variant="h5" className={classes.cardTitle}>
             {name}
           </Typography>
-          <p className={classes.projectDescription}>
-            Apparently we had reached a great height in the atmosphere, for the
-            sky was a dead black, and the stars had ceased to twinkle...
-          </p>
+          <p className={classes.projectDescription}>{description}</p>
 
           <div>
             {keywords.map((key, index) => (
@@ -70,7 +68,8 @@ ProjectTile.propTypes = {
   onDelete: PropTypes.func,
   showDelete: PropTypes.bool,
   image: PropTypes.any.isRequired,
-  keywords: PropTypes.array.isRequired
+  keywords: PropTypes.array.isRequired,
+  description: PropTypes.string
 }
 
 ProjectTile.defaultProps = {
