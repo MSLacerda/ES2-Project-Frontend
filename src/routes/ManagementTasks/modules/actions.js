@@ -1,18 +1,14 @@
-import { createActions, createAction } from 'redux-actions'
+import { createAction } from 'redux-actions'
 import {
   STEPPER_NEXT,
   STEPPER_BACK,
-  SELECTEDS_ADD,
-  SELECTEDS_REMOVE,
-  ACTUAL_ADD,
-  ACTUAL_REMOVE
+  UPDATE_SELECTEDS,
+  STEP_VALIDITY_SET
 } from './actionTypes'
 
 export const nextStep = createAction(STEPPER_NEXT)
 export const prevStep = createAction(STEPPER_BACK)
 
-export const addToSelecteds = createAction(SELECTEDS_ADD)
-export const removeFromSelecteds = createAction(SELECTEDS_REMOVE)
+export const updateSelected = createAction(UPDATE_SELECTEDS)
 
-export const addToActual = createAction(ACTUAL_ADD)
-export const removeFromActual = createAction(ACTUAL_REMOVE)
+export const setValidityStep = createAction(STEP_VALIDITY_SET)

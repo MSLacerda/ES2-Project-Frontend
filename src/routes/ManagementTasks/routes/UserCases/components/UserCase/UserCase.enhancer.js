@@ -9,13 +9,15 @@ import {
   setDisplayName,
   withStateHandlers,
   setPropTypes,
-  withProps
+  withProps,
+  lifecycle,
+  withHandlers
 } from 'recompose'
 import { UserIsAuthenticated } from 'utils/router'
 import styles from './UserCase.styles'
 import {
-  addToActual as addToActualAction,
-  removeFromActual as removeFromActualAction
+  updateSelected as updateSelectedAction,
+  setValidityStep as setValidityStepAction
 } from 'routes/ManagementTasks/modules'
 
 export default compose(
@@ -31,13 +33,17 @@ export default compose(
     words
   })),
   connect(
-    ({ management: { actualUseCase, allUseCases } }) => ({
+    ({
+      management: { actualUseCase, allUseCases, stepperIndex, stepValidity }
+    }) => ({
+      stepperIndex,
       actualUseCase,
-      allUseCases
+      allUseCases,
+      stepValidity
     }),
     dispatch => ({
-      addToActual: item => dispatch(addToActualAction(item)),
-      removeFromActual: index => dispatch(removeFromActualAction(index))
+      updateSelecteds: payload => dispatch(updateSelectedAction(payload)),
+      setValidityStep: payload => dispatch(setValidityStepAction(payload))
     })
   ),
   // Add state and state handlers as props
@@ -46,22 +52,33 @@ export default compose(
     ({ words }) => ({
       words
     })
-    // // Add state handlers as props
-    // {
-    //   addToNoSelected: ({ words }) => item => ({
-    //     words: [...words, item]
-    //   }),
-    //   removeFromSelected: ({ selectedWords }) => index => ({
-    //     selectedWords: selectedWords.filter((el, i) => i != index)
-    //   }),
-    //   removeSelected: ({ words }) => index => ({
-    //     words: words.filter((el, i) => i != index)
-    //   }),
-    //   addSelected: ({ selectedWords }) => item => ({
-    //     selectedWords: [...selectedWords, item]
-    //   })
-    // }
   ),
   // Add styles as props.classes
+  withStateHandlers(
+    ({ initialWords = [] }) => ({
+      selectedWords: initialWords
+    }),
+    {
+      addWord: ({ selectedWords }) => word => ({
+        selectedWords: [...selectedWords, word]
+      }),
+      removeWord: ({ selectedWords }) => index => ({
+        selectedWords: selectedWords.filter((content, i) => index !== i)
+      }),
+      setSelectedWords: ({ selectedWords }) => newArray => ({
+        selectedWords: newArray
+      })
+    }
+  ),
+  lifecycle({
+    componentWillMount() {
+      const { allUseCases, stepperIndex, setSelectedWords } = this.props
+      let filtered = allUseCases.filter(item => item.id === stepperIndex)
+
+      if (filtered.length) {
+        setSelectedWords(filtered[0].useCase)
+      }
+    }
+  }),
   withStyles(styles)
 )

@@ -1,8 +1,6 @@
-export const STEPPER_NEXT = 'STEPPER_NEXT'
-export const STEPPER_BACK = 'STEPPER_BACK'
+export const STEPPER_NEXT = 'app/userCases/stepper/STEPPER_NEXT'
+export const STEPPER_BACK = 'app/userCases/stepper/STEPPER_BACK'
 
-export const SELECTEDS_ADD = 'SELECTEDS_ADD'
-export const SELECTEDS_REMOVE = 'SELECTEDS_REMOVE'
+export const UPDATE_SELECTEDS = 'app/userCases/stepper/UPDATE_SELECTEDS'
 
-export const ACTUAL_ADD = 'ACTUAL_ADD'
-export const ACTUAL_REMOVE = 'ACTUAL_REMOVE'
+export const STEP_VALIDITY_SET = 'app/userCases/stepper/STEP_VALIDITY_SET'

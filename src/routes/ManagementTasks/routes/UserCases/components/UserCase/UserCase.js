@@ -1,23 +1,44 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Card from '@material-ui/core/Card'
-import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
-import { Grid, Paper, Chip } from '@material-ui/core'
-import Header from 'components/Header'
-import { map, shuffle } from 'lodash'
+import { Grid, Chip, Fade } from '@material-ui/core'
 
 function UserCases({
   classes,
   words,
-  addToActual,
-  removeFromActual,
-  actualUseCase
+  updateSelecteds,
+  selectedWords,
+  stepperIndex,
+  addWord,
+  removeWord,
+  setValidityStep
 }) {
+  const checked = true
+
+  function update(word) {
+    setValidityStep({ validity: !![...selectedWords, word].length })
+
+    updateSelecteds({
+      id: stepperIndex,
+      useCase: [...selectedWords, word]
+    })
+  }
+
+  function remove(id) {
+    setValidityStep({
+      validity: !selectedWords.filter((item, index) => index !== id).length
+    })
+
+    updateSelecteds({
+      id: stepperIndex,
+      useCase: selectedWords.filter((item, index) => index != id)
+    })
+  }
+
   return (
     <Grid className={classes.root} container spacing={8}>
       <Grid item xs={12} lg={12}>
-        {actualUseCase.map((item, index) => (
+        {selectedWords.map((item, index) => (
           <Chip
             key={index}
             label={item}
@@ -25,7 +46,8 @@ function UserCases({
             className={classes.chip}
             clickable
             onClick={() => {
-              removeFromActual(index)
+              removeWord(index)
+              remove(index)
             }}
           />
         ))}
@@ -38,17 +60,23 @@ function UserCases({
       </Grid>
       <Grid item xs={12} lg={12}>
         {words.map((el, index) => (
-          <Chip
+          <Fade
             key={index}
-            label={el}
-            color="primary"
-            className={classes.chip}
-            clickable
-            variant="outlined"
-            onClick={() => {
-              addToActual(el)
-            }}
-          />
+            in={checked}
+            style={{ transformOrigin: '0 0 0' }}
+            {...(checked ? { timeout: 200 * (index + 1) } : {})}>
+            <Chip
+              label={el}
+              color="primary"
+              className={classes.chip}
+              clickable
+              variant="outlined"
+              onClick={() => {
+                addWord(el)
+                update(el)
+              }}
+            />
+          </Fade>
         ))}
       </Grid>
     </Grid>
@@ -57,10 +85,13 @@ function UserCases({
 
 UserCases.propTypes = {
   classes: PropTypes.object.isRequired, // from enhancer (withStyles)
+  addWord: PropTypes.func,
+  removeWord: PropTypes.func,
+  updateSelecteds: PropTypes.func,
   words: PropTypes.array,
-  actualUseCase: PropTypes.array,
-  addToActual: PropTypes.func,
-  removeFromActual: PropTypes.func
+  selectedWords: PropTypes.array,
+  stepperIndex: PropTypes.number,
+  setValidityStep: PropTypes.func
 }
 
 export default UserCases

@@ -9,8 +9,7 @@ import { setDisplayName, withStateHandlers, lifecycle } from 'recompose'
 import { UserIsAuthenticated } from 'utils/router'
 import styles from './Stepper.styles'
 import {
-  addToSelecteds as addToSelectedsAction,
-  removeFromSelecteds as removeFromSelectedsAction,
+  updateSelected as updateSelectedAction,
   nextStep as nextStepAction,
   prevStep as prevStepAction
 } from 'routes/ManagementTasks/modules'
@@ -24,16 +23,17 @@ export default compose(
   UserIsAuthenticated,
   // connect component with props of reducer
   connect(
-    ({ management: { stepperIndex, actualUseCase, allUseCases } }) => ({
+    ({
+      management: { stepperIndex, actualUseCase, allUseCases, stepValidity }
+    }) => ({
       stepperIndex,
       actualUseCase,
-      allUseCases
+      allUseCases,
+      stepValidity
     }),
     dispatch => ({
       addToSelecteds: (id, useCase) =>
-        dispatch(addToSelectedsAction({ id, useCase })),
-      removeFromSelecteds: (id, useCase) =>
-        removeFromSelectedsAction({ id, useCase }),
+        dispatch(updateSelectedAction({ id, useCase })),
       nextStep: () => dispatch(nextStepAction()),
       prevStep: () => dispatch(prevStepAction())
     })
@@ -43,7 +43,16 @@ export default compose(
       console.log('component will mount -> ', this.props.stepperIndex)
     }
   }),
-  withStateHandlers(),
+  // withStateHandlers(
+  //   ({ initialValue = false }) => ({
+  //     isStepValid: initialValue
+  //   }),
+  //   {
+  //     setStepValidty: ({ isStepValid }) => validity => ({
+  //       isStepValid: validity
+  //     })
+  //   }
+  // ),
   // Add styles as props.classes
   withStyles(styles)
 )

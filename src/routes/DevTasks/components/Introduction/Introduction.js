@@ -8,22 +8,34 @@ import { Grid, Typography, Button } from '@material-ui/core'
 function Introduction({ classes, goToUserCases }) {
   return (
     <Grid container className={classes.root}>
-      <Typography component="h4" variant="h4">
-        Introdução
-      </Typography>
+      <Grid item xs={12} lg={12} xl={12}>
+        <Typography component="h4" variant="h4">
+          Introdução
+        </Typography>
+      </Grid>
 
-      <p className={classes.description}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sem
-        dolor, gravida eget fermentum ac, imperdiet sed nulla. Fusce non felis
-        tempus, egestas odio volutpat, fermentum justo. Curabitur bibendum nunc
-        nec lorem vulputate sodales. Mauris pellentesque, dolor vitae lacinia
-        finibus, dui metus consectetur nibh, quis suscipit nulla arcu lacinia
-        turpis. Nunc aliquet feugiat justo quis porttitor. Praesent placerat,
-        enim non scelerisque efficitur, metus purus gravida leo, vitae tincidunt
-        leo augue convallis enim. Etiam scelerisque odio arcu, a pharetra elit
-        volutpat non. Suspendisse mauris massa, hendrerit ac nulla vel,
-        porttitor tincidunt velit.
-      </p>
+      <Grid item xs={12} lg={12} xl={12}>
+        <p className={classes.description}>
+          Olá, seja bem-vindo! Você acabou de ser contratada(o) pela Corporação
+          Simples (CS) para desenvolver o novo processador MPS - (Máquina de
+          Processamento Simples).
+        </p>
+      </Grid>
+
+      <Grid item xs={12} lg={12} xl={12}>
+        <p className={classes.description}>
+          Para que você possa iniciar nessa nova jornada, jovem padawan, será
+          necessário o download do kit de desenvolvimento Java que pode ser
+          encontrado aqui, uma IDE ou editor da sua preferência e este arquivo
+          que contém os recursos pré-definidos do MPS. Este processador conta
+          com uma memória de 1000 células e 17 instruções, sendo que cada
+          instrução ou variável ocupa uma célula inteira.
+        </p>
+      </Grid>
+
+      <Grid item xs={12} lg={12} xl={12}>
+        <b>Boa sorte! E que começe os jogos!</b>
+      </Grid>
 
       <Button
         onClick={goToUserCases}

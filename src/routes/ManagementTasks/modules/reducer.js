@@ -2,16 +2,16 @@ import { handleActions } from 'redux-actions'
 import {
   STEPPER_NEXT,
   STEPPER_BACK,
-  SELECTEDS_ADD,
-  SELECTEDS_REMOVE,
-  ACTUAL_ADD,
-  ACTUAL_REMOVE
+  UPDATE_SELECTEDS,
+  STEP_VALIDITY_SET
 } from './actionTypes'
 
 const defaultState = {
   stepperIndex: 0,
   allUseCases: [],
-  actualUseCase: []
+  stepValidity: {
+    validity: false
+  }
 }
 
 function nextStepperHandler(state, { payload }) {
@@ -25,31 +25,28 @@ function backStepperHandler(state, { payload }) {
   return { ...state, stepperIndex: state.stepperIndex - 1, actualUseCase: [] }
 }
 
-function addSelectedsHandler(state, { payload: { id, useCase } }) {
-  return {
-    ...state,
-    allUseCases: [...state.allUseCases, { id: id, useCase: useCase }]
-  }
+function setStepValidty(state, payload) {
+  console.log(payload)
+  return { ...state, stepValidity: { validity: payload.validity }
 }
 
-function removeSelectedsHandler(state, { payload: { id } }) {
-  return {
-    ...state,
-    allUseCases: state.allUseCases.filter(item => item.id != id)
+function updateSelectedsHandler(state, { payload: { id, useCase } }) {
+  if (state.allUseCases.length) {
+    return {
+      ...state,
+      allUseCases: state.allUseCases.map(content => {
+        // Replace if the useCase already exists
+        if (content.id == id) {
+          return { id: id, useCase: useCase }
+        }
+        return content
+      })
+    }
   }
-}
 
-function addToActualHandler(state, { payload }) {
   return {
     ...state,
-    actualUseCase: [...state.actualUseCase, payload]
-  }
-}
-
-function removeFromActualHandler(state, { payload }) {
-  return {
-    ...state,
-    actualUseCase: state.actualUseCase.filter((item, index) => index != payload)
+    allUseCases: [...state.allUseCases, { id, useCase }]
   }
 }
 
@@ -57,10 +54,8 @@ export const reducer = handleActions(
   {
     [STEPPER_NEXT]: nextStepperHandler,
     [STEPPER_BACK]: backStepperHandler,
-    [SELECTEDS_ADD]: addSelectedsHandler,
-    [SELECTEDS_REMOVE]: removeSelectedsHandler,
-    [ACTUAL_ADD]: addToActualHandler,
-    [ACTUAL_REMOVE]: removeFromActualHandler
+    [UPDATE_SELECTEDS]: updateSelectedsHandler,
+    [STEP_VALIDITY_SET]: setStepValidty
   },
   defaultState
 )
