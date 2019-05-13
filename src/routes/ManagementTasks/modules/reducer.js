@@ -26,8 +26,7 @@ function backStepperHandler(state, { payload }) {
 }
 
 function setStepValidty(state, payload) {
-  console.log(payload)
-  return { ...state, stepValidity: { validity: payload.validity }
+  return { ...state, stepValidity: { validity: payload.validity } }
 }
 
 function updateSelectedsHandler(state, { payload: { id, useCase } }) {
