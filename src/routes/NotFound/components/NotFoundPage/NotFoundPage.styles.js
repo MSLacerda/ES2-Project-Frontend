@@ -1,7 +1,8 @@
-export default () => ({
+export default theme => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center'
+    alignItems: 'center',
+    color: theme.palette.primary.contrastText
   }
 })

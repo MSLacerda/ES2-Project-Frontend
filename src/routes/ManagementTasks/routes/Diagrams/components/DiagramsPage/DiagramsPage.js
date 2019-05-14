@@ -13,7 +13,7 @@ function DiagramsPage({ classes }) {
         <Grid item xs={12} sm={8} lg={8}>
           <Header
             title="Digrama: Caso Uso"
-            subtitle="Forme o texto corretamente corretamente"
+            subtitle="Preencha os Atores do Caso de Uso Abaixo"
           />
         </Grid>
       </Grid>

@@ -13,6 +13,7 @@ import {
   nextStep as nextStepAction,
   prevStep as prevStepAction
 } from 'routes/ManagementTasks/modules'
+import { TASKS_PATH, MANAGEMENT_PATH } from 'constants/paths'
 
 export default compose(
   // Set component display name (more clear in dev/error tools)
@@ -39,8 +40,18 @@ export default compose(
     })
   ),
   lifecycle({
-    componentWillMount() {
-      console.log('component will mount -> ', this.props.stepperIndex)
+    componentDidMount() {
+      console.log(
+        'component did mount -> ',
+        this.props.stepperIndex,
+        this.props.userCases
+      )
+    },
+    componentDidUpdate() {
+      const { stepperIndex, userCases, history } = this.props
+      if (stepperIndex >= userCases.length) {
+        history.push(`${MANAGEMENT_PATH}/diagrams`)
+      }
     }
   }),
   // withStateHandlers(

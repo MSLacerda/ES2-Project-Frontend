@@ -4,8 +4,8 @@ import PropTypes from 'prop-types'
 function NotFoundPage({ classes }) {
   return (
     <div className={classes.root}>
-      <h1>Whoops! 404!</h1>
-      <p>This page was not found.</p>
+      <h1>Oooops! 404!</h1>
+      <p>Página não encontrada.</p>
     </div>
   )
 }

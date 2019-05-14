@@ -74,7 +74,6 @@ export default compose(
     componentWillMount() {
       const { allUseCases, stepperIndex, setSelectedWords } = this.props
       let filtered = allUseCases.filter(item => item.id === stepperIndex)
-
       if (filtered.length) {
         setSelectedWords(filtered[0].useCase)
       }

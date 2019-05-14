@@ -35,7 +35,7 @@ function updateSelectedsHandler(state, { payload: { id, useCase } }) {
       ...state,
       allUseCases: state.allUseCases.map(content => {
         // Replace if the useCase already exists
-        if (content.id == id) {
+        if (content.id === id) {
           return { id: id, useCase: useCase }
         }
         return content

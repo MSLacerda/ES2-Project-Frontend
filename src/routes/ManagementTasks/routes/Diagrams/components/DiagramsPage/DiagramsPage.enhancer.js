@@ -13,7 +13,7 @@ import { withFirebase } from 'react-redux-firebase'
 
 export default compose(
   // Set component display name (more clear in dev/error tools)
-  setDisplayName('EnhancedUserCasesPage'),
+  setDisplayName('EnhancedDiagramsPage'),
   // Redirect to /login if user is not logged in
   UserIsAuthenticated,
   withFirebase,

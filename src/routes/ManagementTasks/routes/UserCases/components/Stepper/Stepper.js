@@ -13,6 +13,7 @@ function Stepper({
   stepValidity
 }) {
   let checked = true
+  console.log('inside usercase -> ', userCases)
   return (
     <Paper elevation={1}>
       <div className={classes.root}>
