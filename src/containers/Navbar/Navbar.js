@@ -7,7 +7,6 @@ import Typography from '@material-ui/core/Typography'
 import { LIST_PATH } from 'constants/paths'
 import AccountMenu from './AccountMenu'
 import LoginMenu from './LoginMenu'
-import { Tabs, Tab } from '@material-ui/core'
 
 function Navbar({
   avatarUrl,

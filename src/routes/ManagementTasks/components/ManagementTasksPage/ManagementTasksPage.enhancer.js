@@ -8,7 +8,6 @@ import { withNotifications } from 'modules/notification'
 import { spinnerWhileLoading } from 'utils/components'
 import { UserIsAuthenticated } from 'utils/router'
 import styles from './ManagementTasksPage.styles'
-import { MANAGEMENT_PATH } from 'constants/paths'
 
 export default compose(
   // Set component display name (more clear in dev/error tools)

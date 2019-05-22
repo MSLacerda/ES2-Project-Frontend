@@ -5,50 +5,23 @@ import { Grid, Chip, Fade } from '@material-ui/core'
 
 function UserCases({
   classes,
-  words,
-  updateSelecteds,
-  selectedWords,
-  stepperIndex,
-  addWord,
-  removeWord,
-  setValidityStep
+  story,
+  selecteds,
+  addToSelecteds,
+  removeFromSelecteds
 }) {
-  const checked = true
-
-  function update(word) {
-    setValidityStep({ validity: !![...selectedWords, word].length })
-
-    updateSelecteds({
-      id: stepperIndex,
-      useCase: [...selectedWords, word]
-    })
-  }
-
-  function remove(id) {
-    setValidityStep({
-      validity: !selectedWords.filter((item, index) => index !== id).length
-    })
-
-    updateSelecteds({
-      id: stepperIndex,
-      useCase: selectedWords.filter((item, index) => index != id)
-    })
-  }
-
+  let checked = true
   return (
     <Grid className={classes.root} container spacing={8}>
       <Grid item xs={12} lg={12}>
-        {selectedWords.map((item, index) => (
+        {selecteds.map((item, index) => (
           <Chip
             key={index}
-            label={item}
+            label={item.conteudo}
             color="secondary"
             className={classes.chip}
             clickable
-            onClick={() => {
-              removeWord(index)
-              remove(index)
-            }}
+            onClick={() => removeFromSelecteds(item.p_estoria)}
           />
         ))}
       </Grid>
@@ -59,22 +32,19 @@ function UserCases({
         </Typography>
       </Grid>
       <Grid item xs={12} lg={12}>
-        {words.map((el, index) => (
+        {story.map((el, index) => (
           <Fade
             key={index}
             in={checked}
             style={{ transformOrigin: '0 0 0' }}
             {...(checked ? { timeout: 200 * (index + 1) } : {})}>
             <Chip
-              label={el}
+              label={el.conteudo}
               color="primary"
               className={classes.chip}
               clickable
               variant="outlined"
-              onClick={() => {
-                addWord(el)
-                update(el)
-              }}
+              onClick={() => addToSelecteds(el)}
             />
           </Fade>
         ))}
@@ -85,13 +55,10 @@ function UserCases({
 
 UserCases.propTypes = {
   classes: PropTypes.object.isRequired, // from enhancer (withStyles)
-  addWord: PropTypes.func,
-  removeWord: PropTypes.func,
-  updateSelecteds: PropTypes.func,
-  words: PropTypes.array,
-  selectedWords: PropTypes.array,
-  stepperIndex: PropTypes.number,
-  setValidityStep: PropTypes.func
+  story: PropTypes.array,
+  selecteds: PropTypes.array,
+  addToSelecteds: PropTypes.func,
+  removeFromSelecteds: PropTypes.func
 }
 
 export default UserCases

@@ -1,17 +1,15 @@
 import PropTypes from 'prop-types'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
-import { get } from 'lodash'
-import firestoreConnect from 'react-redux-firebase/lib/firestoreConnect'
 import { withStyles } from '@material-ui/core/styles'
-import { withRouter } from 'react-router-dom'
 import {
   setDisplayName,
   withStateHandlers,
   setPropTypes,
   withProps,
   lifecycle,
-  withHandlers
+  withHandlers,
+  withState
 } from 'recompose'
 import { UserIsAuthenticated } from 'utils/router'
 import styles from './UserCase.styles'
@@ -19,6 +17,8 @@ import {
   updateSelected as updateSelectedAction,
   setValidityStep as setValidityStepAction
 } from 'routes/ManagementTasks/modules'
+import { withApi } from 'modules/api'
+import { spinnerWhileLoading } from 'utils/components'
 
 export default compose(
   // Set component display name (more clear in dev/error tools)
@@ -26,26 +26,35 @@ export default compose(
   // Redirect to /login if user is not logged in
   UserIsAuthenticated,
   // Add state and state handlers as props
+  withApi,
   setPropTypes({
-    words: PropTypes.array
+    index: PropTypes.number
   }),
-  withProps(({ words }) => ({
-    words
+  lifecycle({
+    componentWillMount() {
+      const { fetchHistories, index } = this.props
+
+      fetchHistories(index)
+    }
+  }),
+  withProps(({ index }) => ({
+    index
   })),
   connect(
     ({
-      management: { actualUseCase, allUseCases, stepperIndex, stepValidity }
+      api: {
+        histories: { data }
+      }
     }) => ({
-      stepperIndex,
-      actualUseCase,
-      allUseCases,
-      stepValidity
+      story: data
     }),
     dispatch => ({
       updateSelecteds: payload => dispatch(updateSelectedAction(payload)),
       setValidityStep: payload => dispatch(setValidityStepAction(payload))
     })
   ),
+  // Wait for uid to exist before going further
+  spinnerWhileLoading(['story']),
   // Add state and state handlers as props
   withStateHandlers(
     // Setup initial state
@@ -70,14 +79,5 @@ export default compose(
       })
     }
   ),
-  lifecycle({
-    componentWillMount() {
-      const { allUseCases, stepperIndex, setSelectedWords } = this.props
-      let filtered = allUseCases.filter(item => item.id === stepperIndex)
-      if (filtered.length) {
-        setSelectedWords(filtered[0].useCase)
-      }
-    }
-  }),
   withStyles(styles)
 )

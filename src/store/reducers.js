@@ -3,6 +3,7 @@ import firebase from 'react-redux-firebase/lib/reducer'
 import firestore from 'redux-firestore/lib/reducer'
 import { reducer as form } from 'redux-form'
 import { reducer as notifications } from 'modules/notification'
+import { reducer as api } from 'modules/api'
 import { reducer as management } from 'routes/ManagementTasks/modules'
 import locationReducer from './location'
 
@@ -13,6 +14,7 @@ export function makeRootReducer(asyncReducers) {
     firestore,
     form,
     notifications,
+    api,
     management,
     location: locationReducer,
     ...asyncReducers

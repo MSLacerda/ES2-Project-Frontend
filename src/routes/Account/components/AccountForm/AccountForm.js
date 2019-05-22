@@ -14,13 +14,24 @@ function AccountForm({ account, handleSubmit, submitting, pristine, classes }) {
           fullWidth
           name="displayName"
           component={TextField}
+          variant="outlined"
+          className={classes.field}
           label="Nome"
         />
-        <Field name="email" label="Email" component={TextField} fullWidth />
+        <Field
+          name="email"
+          label="Email"
+          component={TextField}
+          variant="outlined"
+          className={classes.field}
+          fullWidth
+        />
         <Field
           name="avatarUrl"
           label="URL do Avatar"
+          variant="outlined"
           component={TextField}
+          className={classes.field}
           fullWidth
         />
       </div>
@@ -30,7 +41,11 @@ function AccountForm({ account, handleSubmit, submitting, pristine, classes }) {
           <ProviderDataForm providerData={account.providerData} />
         </div>
       )}
-      <Button color="primary" type="submit" disabled={pristine || submitting}>
+      <Button
+        color="primary"
+        type="submit"
+        disabled={pristine || submitting}
+        className={classes.submit}>
         {submitting ? 'Saving' : 'Save'}
       </Button>
     </form>

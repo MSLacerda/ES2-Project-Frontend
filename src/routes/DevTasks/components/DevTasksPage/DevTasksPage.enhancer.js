@@ -1,11 +1,8 @@
 import { compose } from 'redux'
-import { connect } from 'react-redux'
-import { withHandlers, withStateHandlers, setDisplayName } from 'recompose'
+import { setDisplayName } from 'recompose'
 import { withRouter } from 'react-router-dom'
-import firestoreConnect from 'react-redux-firebase/lib/firestoreConnect'
 import { withStyles } from '@material-ui/core/styles'
 import { withNotifications } from 'modules/notification'
-import { spinnerWhileLoading } from 'utils/components'
 import { UserIsAuthenticated } from 'utils/router'
 import styles from './DevTasksPage.styles'
 

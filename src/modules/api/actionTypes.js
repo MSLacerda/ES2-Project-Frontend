@@ -1,0 +1,5 @@
+export const API_DIAGRAMS_REQUEST = 'modules/api/API_DIAGRAMS_REQUEST'
+export const API_DIAGRAMS_RECEIVE = 'modules/api/API_DIAGRAMS_RECEIVE'
+
+export const API_HISTORIES_REQUEST = 'modules/api/API_HISTORIES_REQUEST'
+export const API_HISTORIES_RECEIVE = 'modules/api/API_HISTORIES_RECEIVE'

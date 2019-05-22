@@ -7,5 +7,12 @@ export default theme => ({
   },
   fields: {
     width: '60%'
+  },
+  field: {
+    marginTop: theme.spacing.unit * 3,
+    marginBottom: theme.spacing.unit * 3
+  },
+  submit: {
+    ...theme.custom.button
   }
 })

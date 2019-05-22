@@ -7,7 +7,7 @@ import { withStyles } from '@material-ui/core/styles'
 import { withNotifications } from 'modules/notification'
 import { spinnerWhileLoading } from 'utils/components'
 import { UserIsAuthenticated } from 'utils/router'
-import { LIST_PATH, TASKS_PATH } from 'constants/paths'
+import { TASKS_PATH } from 'constants/paths'
 import styles from './ProjectsPage.styles'
 
 export default compose(

@@ -32,13 +32,17 @@ export default compose(
   // Add state and state handlers as props
   withStateHandlers(
     // Setup initial state
-    ({ initialDialogOpen = false }) => ({
-      newDialogOpen: initialDialogOpen
+    ({ initialDialogOpen = false, initialSpecOpen = false }) => ({
+      newDialogOpen: initialDialogOpen,
+      specOpen: initialSpecOpen
     }),
     // Add state handlers as props
     {
       toggleDialog: ({ newDialogOpen }) => () => ({
         newDialogOpen: !newDialogOpen
+      }),
+      toggleSpec: ({ specOpen }) => option => ({
+        specOpen: option
       })
     }
   ),

@@ -22,6 +22,11 @@ export default theme => ({
     paddingTop: theme.spacing.unit,
     opacity: theme.palette.primary.opacityText
   },
+  spec: {
+    ...theme.custom.button,
+    marginTop: theme.spacing.unit * 2,
+    marginBottom: theme.spacing.unit * 2
+  },
   main: {
     ...theme.spacing.container,
     paddingTop: theme.spacing.unit * 3
