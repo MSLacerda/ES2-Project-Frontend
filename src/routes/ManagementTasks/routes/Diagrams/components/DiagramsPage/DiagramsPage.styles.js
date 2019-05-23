@@ -20,6 +20,10 @@ export default theme => ({
     marginTop: theme.spacing.unit * 2,
     marginBottom: theme.spacing.unit
   },
+  prev: {
+    ...theme.custom.button,
+    marginLeft: theme.spacing.unit * 2
+  },
   next: {
     ...theme.custom.button
   },

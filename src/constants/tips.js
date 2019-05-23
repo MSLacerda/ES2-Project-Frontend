@@ -3,8 +3,8 @@ import { shuffle } from 'lodash'
 const types = {
   stories: [
     'Exemplo de Estoria: "Como usuário gostaria de pagar minha compra para possa receber os produtos."',
-    'Geralmente, estórias de usuário inicia com um "Como usuário..."',
-    'As Informações necessárias para organizar a estória pode ser encontrado na especificação do projeto.'
+    'Geralmente, estórias de usuário inicia com um "Como um usuário..."',
+    'As Informações necessárias para organizar a estória pode ser encontrada na especificação do projeto.'
   ]
 }
 

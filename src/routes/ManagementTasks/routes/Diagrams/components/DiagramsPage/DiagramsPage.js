@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import PropTypes, { func } from 'prop-types'
 import Typography from '@material-ui/core/Typography'
 import {
   Grid,
@@ -11,11 +11,20 @@ import {
 } from '@material-ui/core'
 import Header from 'components/Header'
 import diagramImg from 'static/images/diagrams/usecase.png'
+import Axios from 'axios'
+import endpoints from 'constants/api'
 
-function Options({ id, classes, values, setRelation }) {
+function Options({ id, classes, values, setRelation, relations }) {
   function handleChange(event) {
     const userId = parseInt(event.target.value)
     setRelation(id, userId)
+  }
+
+  function isChecked() {
+    const test = relations.filter(el => el.codigo === id)
+
+    if (test[0]) return test[0].codigo_usuario.toString()
+    return ''
   }
 
   return (
@@ -23,12 +32,14 @@ function Options({ id, classes, values, setRelation }) {
       aria-label="Opção"
       name="opcao"
       className={classes.group}
-      onChange={handleChange}>
+      onChange={handleChange}
+      value={isChecked()}>
       {values.map((item, index) => (
         <FormControlLabel
           key={index}
           value={`${item.codigo}`}
           control={<Radio />}
+          checked={isChecked()}
           label={item.conteudo}
         />
       ))}
@@ -42,8 +53,21 @@ function DiagramsPage({
   index,
   nextStep,
   prevStep,
-  setRelation
+  relations,
+  setRelation,
+  showError,
+  showSucess
 }) {
+  async function testCases() {
+    const response = await Axios.put(endpoints.diagramUrl, relations)
+
+    if (response.data.correct) {
+      showSucess('Relações corretas!')
+    } else {
+      showError('Revise as relações atribuidas')
+    }
+  }
+
   return (
     <div className={classes.root}>
       <Grid spacing={8} container justify="center">
@@ -68,6 +92,7 @@ function DiagramsPage({
                         classes={classes}
                         values={diagrams}
                         setRelation={setRelation}
+                        relations={relations}
                       />
                     </div>
                   ) : (
@@ -82,18 +107,27 @@ function DiagramsPage({
                   color="secondary"
                   variant="contained"
                   className={classes.next}
-                  onClick={() => nextStep(diagrams.length)}>
+                  onClick={() => testCases()}>
                   Enviar
                 </Button>
               ) : (
-                <Button
-                  color="primary"
-                  variant="contained"
-                  className={classes.next}
-                  onClick={() => nextStep(diagrams.length)}>
-                  Pronto
-                </Button>
+                <>
+                  <Button
+                    color="primary"
+                    variant="contained"
+                    className={classes.next}
+                    onClick={() => nextStep(diagrams.length)}>
+                    Pronto
+                  </Button>
+                </>
               )}
+              <Button
+                color="secondary"
+                variant="outlined"
+                className={classes.prev}
+                onClick={() => prevStep(diagrams.length)}>
+                Voltar
+              </Button>
             </div>
           </Paper>
         </Grid>
@@ -106,11 +140,14 @@ DiagramsPage.propTypes = {
   classes: PropTypes.object.isRequired, // from enhancer (withStyles)
   userCases: PropTypes.array, // User cases of firebase database
   diagrams: PropTypes.array,
+  relations: PropTypes.array,
   fetchUseCases: PropTypes.func,
   index: PropTypes.number,
   nextStep: PropTypes.func,
   prevStep: PropTypes.func,
-  setRelation: PropTypes.func
+  setRelation: PropTypes.func,
+  showError: PropTypes.func,
+  showSucess: PropTypes.func
 }
 
 export default DiagramsPage

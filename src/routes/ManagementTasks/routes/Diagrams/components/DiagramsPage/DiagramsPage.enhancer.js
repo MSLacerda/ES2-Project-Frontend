@@ -12,12 +12,14 @@ import { spinnerWhileLoading } from 'utils/components'
 import { withFirebase } from 'react-redux-firebase'
 import { withApi } from 'modules/api'
 import { findIndex } from 'lodash'
+import { withNotifications } from 'modules/notification'
 
 export default compose(
   // Set component display name (more clear in dev/error tools)
   setDisplayName('EnhancedDiagramsPage'),
   // Redirect to /login if user is not logged in
   UserIsAuthenticated,
+  withNotifications,
   withFirebase,
   withApi,
   // Add props.match
@@ -47,7 +49,7 @@ export default compose(
         index: index > limit ? index : index + 1
       }),
       prevStep: ({ index }) => () => ({
-        index: index <= 0 ? index : index + 1
+        index: index <= 0 ? index : index - 1
       }),
       setRelation: ({ relations }) => (id, userId) => {
         const index = findIndex(relations, { codigo: id })

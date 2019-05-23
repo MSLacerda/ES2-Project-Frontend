@@ -7,7 +7,8 @@ import {
   setDisplayName,
   withStateHandlers,
   lifecycle,
-  withState
+  withState,
+  withHandlers
 } from 'recompose'
 import { withRouter } from 'react-router-dom'
 import { UserIsAuthenticated } from 'utils/router'
@@ -26,14 +27,26 @@ export default compose(
   withFirebase,
   withApi,
   withNotifications,
-  withState('tip', 'setTip', ''),
-  lifecycle({
-    componentWillMount() {
-      const { fetchHistories } = this.props
-      // fetchHistories()
-    }
-  }),
   withRouter,
+  // Map auth uid from state to props
+  connect(({ firebase: { auth: { uid } } }) => ({ uid })),
+  // Wait for uid to exist before going further
+  spinnerWhileLoading(['uid']),
+  // Create listeners based on current users UID
+  firestoreConnect(({ uid }) => [
+    // Listener for progress the current user created
+    {
+      collection: 'progress',
+      where: ['createdBy', '==', uid]
+    }
+  ]),
+  // Map projects from state to props
+  connect(({ firestore: { ordered } }) => ({
+    progress: ordered.progress
+  })),
+  // Wait for uid to exist before going further
+  spinnerWhileLoading(['progress']),
+  withState('tip', 'setTip', ''),
   withStateHandlers(
     ({
       initialStepIndex = 0,
@@ -65,8 +78,26 @@ export default compose(
       }),
       toggleSpec: ({ specOpen }) => option => ({
         specOpen: option
+      }),
+      setStepIndex: ({ stepIndex }) => index => ({
+        stepIndex: index
       })
     }
   ),
+  withHandlers({
+    setProgress: props => (data, id, hasToSetIndex) => {
+      const { uid, setStepIndex, firestore, showError } = props
+
+      return firestore
+        .update(`progress/${id}`, data)
+        .then(() => {
+          if (hasToSetIndex) setStepIndex(data.storyStep)
+        })
+        .catch(err => {
+          console.log(err)
+          showError('Impossível atualizar o seu perfil de atividades')
+        })
+    }
+  }),
   withStyles(styles)
 )

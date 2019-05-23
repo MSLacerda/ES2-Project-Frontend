@@ -9,7 +9,8 @@ import Header from 'components/Header'
 import UserCasesRoute from 'routes/ManagementTasks/routes/UserCases'
 import DiagramsRoute from 'routes/ManagementTasks/routes/Diagrams'
 
-function ManagementTasksPage({ classes, match, auth }) {
+function ManagementTasksPage({ classes, match, auth, getProgress }) {
+  getProgress()
   return (
     <Switch>
       {/* Child routes */}
@@ -51,7 +52,8 @@ ManagementTasksPage.propTypes = {
   match: PropTypes.object.isRequired, // from enhancer (withRouter)
   classes: PropTypes.object.isRequired, // from enhancer (withStyles)
   match: PropTypes.object.isRequired, // from enhancer (withRouter)
-  auth: PropTypes.object // from enhancer (connect + firebaseConnect - firebase)
+  auth: PropTypes.object, // from enhancer (connect + firebaseConnect - firebase)
+  getProgress: PropTypes.func
 }
 
 export default ManagementTasksPage

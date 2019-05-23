@@ -8,7 +8,7 @@ import UserCase from '../UserCase'
 import Axios from 'axios'
 import endpoints from 'constants/api'
 import { getTip } from 'constants/tips'
-import { MANAGEMENT_PATH } from 'constants/paths'
+import { MANAGEMENT_PATH, TASKS_PATH } from 'constants/paths'
 import Specification from 'components/Specification'
 
 function UserCases({
@@ -16,6 +16,8 @@ function UserCases({
   stepIndex,
   nextStep,
   prevStep,
+  setStepIndex,
+  progress,
   selecteds,
   addToSelecteds,
   removeFromSelecteds,
@@ -25,24 +27,42 @@ function UserCases({
   setTip,
   history,
   specOpen,
-  toggleSpec
+  toggleSpec,
+  setProgress
 }) {
   let checked = true
-
   async function testStory() {
     const response = await Axios.put(
       `${endpoints.historiesUrl}/${++stepIndex}`,
       selecteds
     )
 
-    if (true) {
+    if (/*response.data.correto*/ true) {
       showSuccess('Combinação correta')
+      setProgress(
+        {
+          storyStep: stepIndex
+        },
+        progress[0].id
+      )
       nextStep()
     } else {
       setTip(getTip('stories'))
       showError('Combinação errada')
     }
   }
+
+  if (progress[0] && progress[0].stories) {
+    history.push(`${TASKS_PATH}/diagrams`)
+  } else if (
+    progress[0] &&
+    progress[0].storyStep > 0 &&
+    progress[0].storyStep !== stepIndex
+  ) {
+    console.log(progress[0].storyStep, stepIndex)
+    setStepIndex(progress[0].storyStep)
+  }
+
   return (
     <div className={classes.root}>
       <Grid spacing={8} container justify="center">
@@ -101,29 +121,42 @@ function UserCases({
             </>
             <div className={classes.control}>
               {stepIndex >= 2 ? (
-                <Button
-                  color="secondary"
-                  variant="contained"
-                  className={classes.next}
-                  onClick={() => history.push(`${MANAGEMENT_PATH}/diagrams`)}>
-                  Próximo Desafio
-                </Button>
+                <>
+                  <Button
+                    color="secondary"
+                    variant="contained"
+                    className={classes.next}
+                    onClick={() => history.push(`${MANAGEMENT_PATH}/diagrams`)}>
+                    Próximo Desafio
+                  </Button>
+                  <Button
+                    variant="contained"
+                    className={classes.prev}
+                    disabled={stepIndex === 0}
+                    onClick={() => {
+                      setProgress({ storyStep: 0 }, progress[0].id, true)
+                    }}>
+                    Resetar
+                  </Button>
+                </>
               ) : (
-                <Button
-                  color="primary"
-                  variant="contained"
-                  className={classes.next}
-                  onClick={() => testStory()}>
-                  Pronto
-                </Button>
+                <>
+                  <Button
+                    color="primary"
+                    variant="contained"
+                    className={classes.next}
+                    onClick={() => testStory()}>
+                    Pronto
+                  </Button>
+                  <Button
+                    variant="contained"
+                    className={classes.prev}
+                    disabled={stepIndex === 0}
+                    onClick={() => prevStep(2)}>
+                    Voltar
+                  </Button>
+                </>
               )}
-              <Button
-                variant="contained"
-                className={classes.prev}
-                disabled={stepIndex === 0}
-                onClick={() => prevStep(2)}>
-                Voltar
-              </Button>
             </div>
             <div className={classes.hints}>
               {tip.length > 0 ? (
@@ -145,19 +178,22 @@ function UserCases({
 
 UserCases.propTypes = {
   classes: PropTypes.object.isRequired, // from enhancer (withStyles)
-  userCases: PropTypes.array, // User cases of firebase database
-  stepIndex: PropTypes.number,
   nextStep: PropTypes.func,
   prevStep: PropTypes.func,
-  selecteds: PropTypes.array,
+  setStepIndex: PropTypes.func,
   addToSelecteds: PropTypes.func,
   removeFromSelecteds: PropTypes.func,
   testStory: PropTypes.func,
-  tip: PropTypes.string,
   setTip: PropTypes.func,
-  history: PropTypes.object,
   toggleSpec: PropTypes.func,
-  specOpen: PropTypes.bool
+  setProgress: PropTypes.func,
+  selecteds: PropTypes.array,
+  userCases: PropTypes.array, // User cases of firebase database
+  progress: PropTypes.array,
+  specOpen: PropTypes.bool,
+  history: PropTypes.object,
+  tip: PropTypes.string,
+  stepIndex: PropTypes.number
 }
 
 export default UserCases

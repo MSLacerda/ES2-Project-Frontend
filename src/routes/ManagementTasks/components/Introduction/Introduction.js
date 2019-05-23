@@ -53,7 +53,7 @@ function Introduction({ classes, goToUserCases, specOpen, toggleSpec }) {
         Começar
       </Button>
 
-      <Specification opem={specOpen} specClose={() => toggleSpec(false)} />
+      <Specification open={specOpen} specClose={() => toggleSpec(false)} />
     </Grid>
   )
 }

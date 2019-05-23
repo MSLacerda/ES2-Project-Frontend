@@ -38,7 +38,7 @@ export function fetchUseCases() {
     dispatch(requestDiagrams())
 
     return axios
-      .get(endpoints.diagramUrl + '/1')
+      .get(endpoints.diagramUrl)
       .then(response => dispatch(receiveDiagrams(response)))
   }
 }

@@ -1,6 +1,11 @@
 import { compose } from 'redux'
 import { connect } from 'react-redux'
-import { withHandlers, withStateHandlers, setDisplayName } from 'recompose'
+import {
+  withHandlers,
+  withStateHandlers,
+  setDisplayName,
+  lifecycle
+} from 'recompose'
 import { withRouter } from 'react-router-dom'
 import firestoreConnect from 'react-redux-firebase/lib/firestoreConnect'
 import { withStyles } from '@material-ui/core/styles'
@@ -10,30 +15,30 @@ import { UserIsAuthenticated } from 'utils/router'
 import styles from './ManagementTasksPage.styles'
 
 export default compose(
-  // Set component display name (more clear in dev/error tools)
-  setDisplayName('EnhancedTasksPage'),
   // redirect to /login if user is not logged in
   UserIsAuthenticated,
-  // Add props.router
-  withRouter,
+  // Set component display name (more clear in dev/error tools)
+  setDisplayName('EnhancedTasksPage'),
   // Map auth uid from state to props
   connect(({ firebase: { auth: { uid } } }) => ({ uid })),
   // Wait for uid to exist before going further
   spinnerWhileLoading(['uid']),
   // Create listeners based on current users UID
   firestoreConnect(({ uid }) => [
-    // Listener for projects the current user created
+    // Listener for progress the current user created
     {
-      collection: 'projects',
+      collection: 'progress',
       where: ['createdBy', '==', uid]
     }
   ]),
   // Map projects from state to props
   connect(({ firestore: { ordered } }) => ({
-    projects: ordered.projects
+    progress: ordered.progress
   })),
-  // Show loading spinner while projects and collabProjects are loading
-  spinnerWhileLoading(['projects']),
+  // Wait for uid to exist before going further
+  spinnerWhileLoading(['progress']),
+  // Add props.router
+  withRouter,
   // Add props.showError and props.showSuccess
   withNotifications,
   // Add state and state handlers as props
@@ -49,7 +54,43 @@ export default compose(
       })
     }
   ),
-  withHandlers({}),
+  withHandlers({
+    getProgress: props => () => {},
+    createProgress: props => () => {
+      const { firestore, uid, showError, showSuccess } = props
+      if (!uid) {
+        return showError('You must be logged in to create a project')
+      }
+      return firestore
+        .add(
+          { collection: 'progress' },
+          {
+            coding: false,
+            createdBy: uid,
+            stories: false,
+            usecases: false,
+            createdAt: firestore.FieldValue.serverTimestamp(),
+            storyStep: 0
+          }
+        )
+        .then(() => {
+          showSuccess('Perfil de atividades criado')
+        })
+        .catch(err => {
+          console.error('Error:', err) // eslint-disable-line no-console
+          showError(err.message || 'Could not add project')
+          return Promise.reject(err)
+        })
+    }
+  }),
+  lifecycle({
+    componentWillMount() {
+      const { progress, createProgress } = this.props
+      if (!progress[0]) {
+        createProgress()
+      }
+    }
+  }),
   // Add styles as props.classes
   withStyles(styles)
 )
