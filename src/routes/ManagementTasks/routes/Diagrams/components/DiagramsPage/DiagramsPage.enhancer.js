@@ -5,11 +5,16 @@ import { connect } from 'react-redux'
 // import firestoreConnect from 'react-redux-firebase/lib/firestoreConnect'
 import { withStyles } from '@material-ui/core/styles'
 import { withRouter } from 'react-router-dom'
-import { setDisplayName, lifecycle, withStateHandlers } from 'recompose'
+import {
+  setDisplayName,
+  lifecycle,
+  withStateHandlers,
+  withHandlers
+} from 'recompose'
 import { UserIsAuthenticated } from 'utils/router'
 import styles from './DiagramsPage.styles'
 import { spinnerWhileLoading } from 'utils/components'
-import { withFirebase } from 'react-redux-firebase'
+import { withFirebase, firestoreConnect } from 'react-redux-firebase'
 import { withApi } from 'modules/api'
 import { findIndex } from 'lodash'
 import { withNotifications } from 'modules/notification'
@@ -38,11 +43,29 @@ export default compose(
   })),
   // Wait for uid to exist before going further
   spinnerWhileLoading(['diagrams']),
-
+  // Map auth uid from state to props
+  connect(({ firebase: { auth: { uid } } }) => ({ uid })),
+  // Wait for uid to exist before going further
+  spinnerWhileLoading(['uid']),
+  // Create listeners based on current users UID
+  firestoreConnect(({ uid }) => [
+    // Listener for progress the current user created
+    {
+      collection: 'progress',
+      where: ['createdBy', '==', uid]
+    }
+  ]),
+  // Map projects from state to props
+  connect(({ firestore: { ordered } }) => ({
+    progress: ordered.progress
+  })),
+  // Wait for uid to exist before going further
+  spinnerWhileLoading(['progress']),
   withStateHandlers(
-    ({ initialIndex = 0, initialRelations = [] }) => ({
+    ({ initialIndex = 0, initialRelations = [], initialFinished = false }) => ({
       index: initialIndex,
-      relations: initialRelations
+      relations: initialRelations,
+      finished: initialFinished
     }),
     {
       nextStep: ({ index }) => limit => ({
@@ -50,6 +73,12 @@ export default compose(
       }),
       prevStep: ({ index }) => () => ({
         index: index <= 0 ? index : index - 1
+      }),
+      setIndex: ({ index }) => i => ({
+        index: i
+      }),
+      setFinished: ({ finished }) => option => ({
+        finished: option
       }),
       setRelation: ({ relations }) => (id, userId) => {
         const index = findIndex(relations, { codigo: id })
@@ -72,6 +101,21 @@ export default compose(
       }
     }
   ),
+  withHandlers({
+    setProgress: props => (data, id, hasToReset) => {
+      const { uid, setFinished, firestore, showError } = props
+
+      return firestore
+        .update(`progress/${id}`, data)
+        .then(() => {
+          if (hasToReset) setFinished(false)
+        })
+        .catch(err => {
+          console.log(err)
+          showError('Impossível atualizar o seu perfil de atividades')
+        })
+    }
+  }),
   // Add styles as props.classes
   withStyles(styles)
 )

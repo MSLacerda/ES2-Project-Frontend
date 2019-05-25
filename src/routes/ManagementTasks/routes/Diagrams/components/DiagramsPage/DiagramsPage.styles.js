@@ -18,7 +18,9 @@ export default theme => ({
   },
   questions: {
     marginTop: theme.spacing.unit * 2,
-    marginBottom: theme.spacing.unit
+    marginBottom: theme.spacing.unit,
+    alignSself: 'start',
+    width: '100%'
   },
   prev: {
     ...theme.custom.button,

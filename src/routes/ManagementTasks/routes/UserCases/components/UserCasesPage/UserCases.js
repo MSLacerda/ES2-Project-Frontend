@@ -68,8 +68,8 @@ function UserCases({
       <Grid spacing={8} container justify="center">
         <Grid item xs={12} sm={8} lg={8}>
           <Header
-            title="Histórias de Usuário"
-            subtitle="Forme o texto corretamente corretamente"
+            title="Estórias de Usuário"
+            subtitle="Organiza as palavras e forme uma estória de usuário"
           />
         </Grid>
         <Grid item xs={12} sm={8} lg={8}>
@@ -149,7 +149,8 @@ function UserCases({
                     Pronto
                   </Button>
                   <Button
-                    variant="contained"
+                    color="secondary"
+                    variant="outlined"
                     className={classes.prev}
                     disabled={stepIndex === 0}
                     onClick={() => prevStep(2)}>
