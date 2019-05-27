@@ -8,12 +8,14 @@ import Introduction from '../Introduction'
 import Header from 'components/Header'
 import UserCasesRoute from 'routes/ManagementTasks/routes/UserCases'
 import DiagramsRoute from 'routes/ManagementTasks/routes/Diagrams'
+import StatisticsRoute from 'routes/ManagementTasks/routes/Statistics'
 
 function ManagementTasksPage({ classes, match, auth, getProgress }) {
   getProgress()
   return (
     <Switch>
       {/* Child routes */}
+      {renderChildren([StatisticsRoute], match, { auth })}
       {renderChildren([UserCasesRoute], match, { auth })}
       {renderChildren([DiagramsRoute], match, { auth })}
       {/* Main route */}

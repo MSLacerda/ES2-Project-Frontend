@@ -17,7 +17,6 @@ function UserCases({
   nextStep,
   prevStep,
   setStepIndex,
-  progress,
   selecteds,
   addToSelecteds,
   removeFromSelecteds,
@@ -28,8 +27,10 @@ function UserCases({
   history,
   specOpen,
   toggleSpec,
+  progress,
   setProgress
 }) {
+  let tries = 0
   let checked = true
   async function testStory() {
     const response = await Axios.put(
@@ -37,8 +38,9 @@ function UserCases({
       selecteds
     )
 
-    if (/*response.data.correto*/ true) {
+    if (/* response.data.correto */ true) {
       showSuccess('Combinação correta')
+
       setProgress(
         {
           storyStep: stepIndex
@@ -47,19 +49,29 @@ function UserCases({
       )
       nextStep()
     } else {
+      if (progress[0].tries) {
+        tries = progress[0].tries + 1
+      } else {
+        tries = 1
+      }
+      setProgress(
+        {
+          tries: tries
+        },
+        progress[0].id
+      )
       setTip(getTip('stories'))
       showError('Combinação errada')
     }
   }
 
   if (progress[0] && progress[0].stories) {
-    history.push(`${TASKS_PATH}/diagrams`)
+    history.push(`${MANAGEMENT_PATH}/diagrams`)
   } else if (
     progress[0] &&
     progress[0].storyStep > 0 &&
     progress[0].storyStep !== stepIndex
   ) {
-    console.log(progress[0].storyStep, stepIndex)
     setStepIndex(progress[0].storyStep)
   }
 
@@ -77,7 +89,7 @@ function UserCases({
             {range(2).map(index => (
               <React.Fragment key={index}>
                 {index === stepIndex ? (
-                  <>
+                  <div className={classes.questions}>
                     <Grid item xs={12} lg={12}>
                       <Typography
                         variant="h4"
@@ -99,7 +111,7 @@ function UserCases({
                         removeFromSelecteds={removeFromSelecteds}
                       />
                     </Grow>
-                  </>
+                  </div>
                 ) : (
                   <> </>
                 )}
@@ -109,8 +121,8 @@ function UserCases({
               {stepIndex >= 2 ? (
                 <>
                   <Typography
-                    variant="h4"
-                    component="h4"
+                    variant="h6"
+                    component="h6"
                     className={classes.caseTitle}>
                     Parabéns por finalizar as estórias do usuário!
                   </Typography>
@@ -123,18 +135,23 @@ function UserCases({
               {stepIndex >= 2 ? (
                 <>
                   <Button
-                    color="secondary"
+                    color="primary"
                     variant="contained"
                     className={classes.next}
                     onClick={() => history.push(`${MANAGEMENT_PATH}/diagrams`)}>
                     Próximo Desafio
                   </Button>
                   <Button
-                    variant="contained"
+                    variant="outlined"
+                    color="secondary"
                     className={classes.prev}
                     disabled={stepIndex === 0}
                     onClick={() => {
-                      setProgress({ storyStep: 0 }, progress[0].id, true)
+                      setProgress(
+                        { storyStep: 0, stories: false, tries: 0 },
+                        progress[0].id,
+                        true
+                      )
                     }}>
                     Resetar
                   </Button>
@@ -147,14 +164,6 @@ function UserCases({
                     className={classes.next}
                     onClick={() => testStory()}>
                     Pronto
-                  </Button>
-                  <Button
-                    color="secondary"
-                    variant="outlined"
-                    className={classes.prev}
-                    disabled={stepIndex === 0}
-                    onClick={() => prevStep(2)}>
-                    Voltar
                   </Button>
                 </>
               )}

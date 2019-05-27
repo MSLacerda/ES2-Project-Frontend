@@ -1,32 +1,30 @@
 import PropTypes from 'prop-types'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
-import { values } from 'lodash'
-import firestoreConnect from 'react-redux-firebase/lib/firestoreConnect'
 import { withStyles } from '@material-ui/core/styles'
-import { withRouter } from 'react-router-dom'
 import { setDisplayName } from 'recompose'
-import { UserIsAuthenticated } from 'utils/router'
 import styles from './StatisticsPage.styles'
-import { spinnerWhileLoading } from 'utils/components'
-import { withFirebase } from 'react-redux-firebase'
+import { firebaseConnect } from 'react-redux-firebase';
 
 export default compose(
-  // Set component display name (more clear in dev/error tools)
-  setDisplayName('EnhancedUserCasesPage'),
-  // Redirect to /login if user is not logged in
-  UserIsAuthenticated,
-  withFirebase,
-  // Create listeners
-  firestoreConnect(['userCases']),
+  // Map auth uid from state to props
+  connect(({ firebase: { auth: { uid } } }) => ({ uid })),
+  spinnerWhileLoading(['uid']),
+  // Create listeners based on current users UID
+  firestoreConnect(({ uid }) => [
+    // Listener for progress the current user created
+    {
+      collection: 'progress',
+      where: ['createdBy', '==', uid]
+    }
+  ]),
   // Map projects from state to props
-  connect(({ firestore: { data: { userCases } } }) => ({
-    userCases: values(userCases)
+  connect(({ firestore: { ordered } }) => ({
+    progress: ordered.progress
   })),
   // Wait for uid to exist before going further
-  spinnerWhileLoading(['userCases']),
-  // Add props.match
-  withRouter,
-  // Add styles as props.classes
+  spinnerWhileLoading(['progress']),
+  // Set component display name (more clear in dev/error tools)
+  setDisplayName('EnhancedStatisticsPage'),
   withStyles(styles)
 )

@@ -29,5 +29,8 @@ export default theme => ({
   },
   hint: {
     padding: theme.spacing.unit * 2
+  },
+  questions: {
+    borderBottom: `1px solid ${theme.palette.secondary.main}`
   }
 })

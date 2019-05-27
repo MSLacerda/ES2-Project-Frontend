@@ -77,8 +77,10 @@ export default compose(
       setIndex: ({ index }) => i => ({
         index: i
       }),
-      setFinished: ({ finished }) => option => ({
-        finished: option
+      setFinished: ({ finished, index, relations }) => option => ({
+        finished: option,
+        index: option ? index : 0,
+        relations: option ? relations : []
       }),
       setRelation: ({ relations }) => (id, userId) => {
         const index = findIndex(relations, { codigo: id })

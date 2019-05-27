@@ -63,14 +63,26 @@ function DiagramsPage({
   setFinished,
   showSuccess
 }) {
+  let tries = 0
   async function testCases() {
-    const response = await Axios.put(endpoints.diagramUrl, relations)
-    let finish = false
-    if (response.data.correto) {
-      showSuccess('Relações corretas!')
-      setProgress({ usecases: true }, progress[0].id, true)
+    if (relations.length === 8) {
+      const response = await Axios.put(endpoints.diagramUrl, relations)
+
+      if (response.data.correto) {
+        showSuccess('Relações corretas!')
+        setProgress({ usecases: true }, progress[0].id, true)
+      } else {
+        if (progress.tries) {
+          tries = progress[0].tries + 1
+        } else {
+          tries = tries + 1
+        }
+
+        setProgress({ tries: tries }, progress[0].id)
+        showError('Revise as relações atribuidas')
+      }
     } else {
-      showError('Revise as relações atribuidas')
+      showError('Relacione todos os casos de uso')
     }
   }
   if (progress[0].usecases && !finished) {
@@ -127,7 +139,7 @@ function DiagramsPage({
               </>
             </div>
             <div className={classes.control}>
-              {index >= diagrams.length ? (
+              {index >= diagrams.length && !finished ? (
                 <>
                   <Button
                     color="secondary"
@@ -146,22 +158,16 @@ function DiagramsPage({
                 </>
               ) : (
                 <>
-                  <Button
-                    color="primary"
-                    variant="contained"
-                    className={classes.next}
-                    onClick={() => nextStep(diagrams.length)}>
-                    Pronto
-                  </Button>
                   {finished ? (
                     <Button
                       color="secondary"
                       variant="outlined"
-                      className={classes.prev}
+                      className={classes.reset}
                       onClick={() =>
                         setProgress(
                           {
-                            usecases: false
+                            usecases: false,
+                            tries: 0
                           },
                           progress[0].id,
                           true
@@ -170,7 +176,22 @@ function DiagramsPage({
                       Resetar
                     </Button>
                   ) : (
-                    ''
+                    <>
+                      <Button
+                        color="primary"
+                        variant="contained"
+                        className={classes.next}
+                        onClick={() => nextStep(diagrams.length)}>
+                        Pronto
+                      </Button>
+                      <Button
+                        color="secondary"
+                        variant="outlined"
+                        className={classes.prev}
+                        onClick={() => prevStep(diagrams.length)}>
+                        Voltar
+                      </Button>
+                    </>
                   )}
                 </>
               )}

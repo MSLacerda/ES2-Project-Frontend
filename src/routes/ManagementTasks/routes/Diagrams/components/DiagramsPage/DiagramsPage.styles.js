@@ -22,6 +22,9 @@ export default theme => ({
     alignSself: 'start',
     width: '100%'
   },
+  reset: {
+    ...theme.custom.button
+  },
   prev: {
     ...theme.custom.button,
     marginLeft: theme.spacing.unit * 2
