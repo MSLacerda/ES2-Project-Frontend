@@ -13,13 +13,13 @@ import Header from 'components/Header'
 import diagramImg from 'static/images/diagrams/usecase.png'
 import Axios from 'axios'
 import endpoints from 'constants/api'
+import { MANAGEMENT_PATH } from 'constants/paths'
 
 function Options({ id, classes, values, setRelation, relations }) {
   function handleChange(event) {
     const userId = parseInt(event.target.value)
     setRelation(id, userId)
   }
-
   function isChecked() {
     const test = relations.filter(el => el.codigo === id)
 
@@ -61,7 +61,8 @@ function DiagramsPage({
   showError,
   finished,
   setFinished,
-  showSuccess
+  showSuccess,
+  history
 }) {
   let diagramTries = 0
   async function testCases() {
@@ -159,22 +160,33 @@ function DiagramsPage({
               ) : (
                 <>
                   {finished ? (
-                    <Button
-                      color="secondary"
-                      variant="outlined"
-                      className={classes.reset}
-                      onClick={() =>
-                        setProgress(
-                          {
-                            usecases: false,
-                            diagramTries: 0
-                          },
-                          progress[0].id,
-                          true
-                        )
-                      }>
-                      Resetar
-                    </Button>
+                    <>
+                      <Button
+                        color="secondary"
+                        variant="outlined"
+                        className={classes.reset}
+                        onClick={() =>
+                          history.push(`${MANAGEMENT_PATH}/statistics`)
+                        }>
+                        Estatísticas
+                      </Button>
+                      <Button
+                        color="secondary"
+                        variant="outlined"
+                        className={classes.prev}
+                        onClick={() =>
+                          setProgress(
+                            {
+                              usecases: false,
+                              diagramTries: 0
+                            },
+                            progress[0].id,
+                            true
+                          )
+                        }>
+                        Resetar
+                      </Button>
+                    </>
                   ) : (
                     <>
                       <Button

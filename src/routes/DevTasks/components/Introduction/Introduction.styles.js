@@ -25,5 +25,19 @@ export default theme => ({
   main: {
     ...theme.spacing.container,
     paddingTop: theme.spacing.unit * 3
+  },
+  spec: {
+    ...theme.custom.button,
+    marginTop: theme.spacing.unit * 2,
+    marginBottom: theme.spacing.unit * 2
+  },
+  remember: {
+    marginTop: theme.spacing.unit * 3
+  },
+  token: {
+    padding: theme.spacing.unit,
+    margin: theme.spacing.unit,
+    color: theme.palette.secondary.contrastText,
+    backgroundColor: theme.palette.secondary.main
   }
 })

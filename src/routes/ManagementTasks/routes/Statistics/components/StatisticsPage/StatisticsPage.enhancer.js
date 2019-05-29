@@ -6,8 +6,10 @@ import { setDisplayName } from 'recompose'
 import styles from './StatisticsPage.styles'
 import { firebaseConnect, firestoreConnect } from 'react-redux-firebase'
 import { spinnerWhileLoading } from 'utils/components'
+import { withRouter } from 'react-router-dom'
 
 export default compose(
+  withRouter,
   // Map auth uid from state to props
   connect(({ firebase: { auth: { uid } } }) => ({ uid })),
   spinnerWhileLoading(['uid']),

@@ -18,11 +18,28 @@ export default compose(
   withRouter,
   // Add props.showError and props.showSuccess
   withNotifications,
+  connect(({ firebase: { auth: { uid } } }) => ({ uid })),
   withHandlers({
     goToUserCases: ({ history }) => () => {
       history.push(`${DEV_PATH}/code`)
     }
   }),
+  withStateHandlers(
+    // Setup initial state
+    ({ initialDialogOpen = false, initialSpecOpen = false }) => ({
+      newDialogOpen: initialDialogOpen,
+      specOpen: initialSpecOpen
+    }),
+    // Add state handlers as props
+    {
+      toggleDialog: ({ newDialogOpen }) => () => ({
+        newDialogOpen: !newDialogOpen
+      }),
+      toggleSpec: ({ specOpen }) => option => ({
+        specOpen: option
+      })
+    }
+  ),
   // Add styles as props.classes
   withStyles(styles)
 )

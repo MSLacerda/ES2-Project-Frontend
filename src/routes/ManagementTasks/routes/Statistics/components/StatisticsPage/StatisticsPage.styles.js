@@ -23,5 +23,9 @@ export default theme => ({
   },
   progressbar: {
     marginTop: theme.spacing.unit * 3
+  },
+  goBack: {
+    ...theme.custom.button,
+    marginTop: theme.spacing.unit * 2
   }
 })
