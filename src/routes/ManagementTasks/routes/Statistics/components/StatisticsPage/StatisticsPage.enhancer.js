@@ -4,7 +4,8 @@ import { connect } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles'
 import { setDisplayName } from 'recompose'
 import styles from './StatisticsPage.styles'
-import { firebaseConnect } from 'react-redux-firebase';
+import { firebaseConnect, firestoreConnect } from 'react-redux-firebase'
+import { spinnerWhileLoading } from 'utils/components'
 
 export default compose(
   // Map auth uid from state to props

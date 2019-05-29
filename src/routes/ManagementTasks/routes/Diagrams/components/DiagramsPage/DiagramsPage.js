@@ -63,7 +63,7 @@ function DiagramsPage({
   setFinished,
   showSuccess
 }) {
-  let tries = 0
+  let diagramTries = 0
   async function testCases() {
     if (relations.length === 8) {
       const response = await Axios.put(endpoints.diagramUrl, relations)
@@ -72,13 +72,13 @@ function DiagramsPage({
         showSuccess('Relações corretas!')
         setProgress({ usecases: true }, progress[0].id, true)
       } else {
-        if (progress.tries) {
-          tries = progress[0].tries + 1
+        if (progress.diagramTries) {
+          diagramTries = progress[0].diagramTries + 1
         } else {
-          tries = tries + 1
+          diagramTries = diagramTries + 1
         }
 
-        setProgress({ tries: tries }, progress[0].id)
+        setProgress({ diagramTries: diagramTries }, progress[0].id)
         showError('Revise as relações atribuidas')
       }
     } else {
@@ -167,7 +167,7 @@ function DiagramsPage({
                         setProgress(
                           {
                             usecases: false,
-                            tries: 0
+                            diagramTries: 0
                           },
                           progress[0].id,
                           true

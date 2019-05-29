@@ -10,5 +10,18 @@ export default theme => ({
   chip: {
     margin: theme.spacing.unit,
     marginLeft: 0
+  },
+  main: {
+    ...theme.flexColumnCenter,
+    padding: theme.spacing.unit * 4
+  },
+  statistic: {
+    marginTop: theme.spacing.unit * 2,
+    marginBottom: theme.spacing.unit,
+    alignSself: 'start',
+    width: '100%'
+  },
+  progressbar: {
+    marginTop: theme.spacing.unit * 3
   }
 })

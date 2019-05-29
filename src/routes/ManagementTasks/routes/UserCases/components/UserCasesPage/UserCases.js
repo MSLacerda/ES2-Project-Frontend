@@ -30,7 +30,7 @@ function UserCases({
   progress,
   setProgress
 }) {
-  let tries = 0
+  let userCaseTries = 0
   let checked = true
   async function testStory() {
     const response = await Axios.put(
@@ -49,14 +49,14 @@ function UserCases({
       )
       nextStep()
     } else {
-      if (progress[0].tries) {
-        tries = progress[0].tries + 1
+      if (progress[0].userCaseTries) {
+        userCaseTries = progress[0].userCaseTries + 1
       } else {
-        tries = 1
+        userCaseTries = 1
       }
       setProgress(
         {
-          tries: tries
+          userCaseTries: userCaseTries
         },
         progress[0].id
       )
@@ -148,7 +148,7 @@ function UserCases({
                     disabled={stepIndex === 0}
                     onClick={() => {
                       setProgress(
-                        { storyStep: 0, stories: false, tries: 0 },
+                        { storyStep: 0, stories: false, userCaseTries: 0 },
                         progress[0].id,
                         true
                       )
